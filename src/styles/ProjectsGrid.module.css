@@ -1,8 +1,8 @@
 .projectSection {
     /* min-width: 350px; */
-    padding: 1rem;
-    box-sizing: border-box;
-    margin: 0 auto;
+  width: clamp(300px, 100%, 600px);
+  padding: 1rem;
+  box-sizing: border-box;
     border: 3px solid orange;
 }
 

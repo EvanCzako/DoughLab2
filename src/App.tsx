@@ -8,22 +8,23 @@ import styles from './App.module.css';
 
 export default function App() {
     return (
-        <main className={`${styles.app}`}>
-			{/* <MouseRing /> */}
+		<main className={styles.app}>
+			<div className={styles.scrollArea}>
+				<div className={styles.appLayout}>
+				<div className={styles.aboutWrapper}>
+					<AboutSection />
+				</div>
+				<div className={styles.projectWrapper}>
+					<ProjectsGrid />
+				</div>
+				</div>
+			</div>
 
-			<div className={styles.appLayout}>
-			<div className={styles.aboutWrapper}>
-				<AboutSection />
+			<div className={styles.fullWidth}>
+				<Skills />
+				<Footer />
 			</div>
-			<div className={styles.projectSectionWrapper}>
-				<ProjectsGrid />
-			</div>
-			</div>
+		</main>
 
-            <div className={styles.fullWidth}>
-                <Skills />
-                <Footer />
-            </div>
-        </main>
     );
 }
