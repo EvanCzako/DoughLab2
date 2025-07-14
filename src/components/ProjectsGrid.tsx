@@ -8,6 +8,7 @@ const projects = [
         link: '/doughloops',
     },
     { title: 'Another App', description: 'Project description', link: '/app2' },
+	{ title: 'Another App', description: 'Project description', link: '/app3' },
     // Add more
 ];
 
@@ -29,7 +30,9 @@ export default function ProjectsGrid() {
 							</h3>
 							<p>{project.description}</p>
 						</a>
+						<div>A bunch of shit about the project here!</div>
 					</div>
+					
 
                 ))}
             </div>

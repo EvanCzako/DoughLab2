@@ -26,6 +26,14 @@ export default function AboutSection() {
 
 				 aoeif uiawe ihuaewiuh ahiuwe fuhiaewf auhie fhaiue f. aowe hoi ew!
 			</p>
+			<p>
+				blahawa w ;o; ao; ajawef io a jwefawe. ahweif awef haiwef iu
+				awefa ihu iauwe ui hiu iuaiwuhefiuhaewiuh aiuwe ahef awefi ae aoew aew a 
+				aewiufh iu uhauehi ahiu euhi a hiua ewf awehiu. ,
+			</p>
+			<p>
+				 aoeif uiawe ihuaewiuh ahiuwe fuhiaewf auhie fhaiue f. aowe hoi ew!
+			</p>
         </section>
     );
 }

@@ -1,5 +1,8 @@
 .aboutSection {
 	border: 3px solid gray;
+	padding: 20px;
+	border-radius: 20px;
+	box-sizing: border-box;
 }
 
 .linksContainer {

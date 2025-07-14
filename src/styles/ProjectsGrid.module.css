@@ -1,13 +1,18 @@
+.projectSection {
+    min-width: 400px;
+    padding: 1rem;
+    box-sizing: border-box;
+    margin: 0 auto;
+    border: 3px solid orange;
+}
+
 .projectWrapper {
 	border: 5px solid red;
-	transition: 0.5s
+	transition: 0.5s;
+	display: flex;
 }
  
 .projectWrapper:hover {
 	border: 15px solid pink;
 	transition: 0.5s;
-}
-
-.projectSection {
-	border: 3px solid orange;
 }
