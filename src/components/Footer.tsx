@@ -10,18 +10,30 @@ export default function Footer() {
     const fontSize = useStore(s => s.fontSize);
 
     return (
-        <section
-            className={styles.footer}
-            style={{ fontSize }}
-        >
+        <section className={styles.footer} style={{ fontSize }}>
             <div className={styles.linksContainer}>
-                <a href="https://github.com/EvanCzako" target="_blank" rel="noopener noreferrer" className={styles.socialLink}>
+                <a
+                    href="https://github.com/EvanCzako"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={styles.socialLink}
+                >
                     <GithubIcon className="social-link" />
                 </a>
-                <a href="https://www.linkedin.com/in/evan-czako/" target="_blank" rel="noopener noreferrer" className={styles.socialLink}>
+                <a
+                    href="https://www.linkedin.com/in/evan-czako/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={styles.socialLink}
+                >
                     <LinkedinIcon className="social-link" />
                 </a>
-                <a href="/resume.pdf" target="_blank" rel="noopener noreferrer" className={styles.socialLink}>
+                <a
+                    href="/resume.pdf"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={styles.socialLink}
+                >
                     <FileIcon className="social-link" />
                 </a>
             </div>

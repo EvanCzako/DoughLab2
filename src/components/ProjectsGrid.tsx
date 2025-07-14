@@ -8,32 +8,23 @@ const projects = [
         link: '/doughloops',
     },
     { title: 'Another App', description: 'Project description', link: '/app2' },
-	{ title: 'Another App', description: 'Project description', link: '/app3' },
+    { title: 'Another App', description: 'Project description', link: '/app3' },
     // Add more
 ];
 
 export default function ProjectsGrid() {
     return (
         <section className={styles.projectSection}>
-            <h2>
-                My Projects
-            </h2>
+            <h2>Projects</h2>
             <div>
                 {projects.map((project, idx) => (
-					<div className={styles.projectWrapper}>
-						<a
-							key={idx}
-							href={project.link}
-						>
-							<h3>
-								{project.title}
-							</h3>
-							<p>{project.description}</p>
-						</a>
-						<div>A bunch of shit about the project here!</div>
-					</div>
-					
-
+                    <div className={styles.projectWrapper}>
+                        <a key={idx} href={project.link} className={styles.projectLink}>
+                            <h3>{project.title}</h3>
+                            <p>{project.description}</p>
+                        </a>
+                        <div className={styles.projectDescription}>A bunch of shit about the project here!</div>
+                    </div>
                 ))}
             </div>
         </section>

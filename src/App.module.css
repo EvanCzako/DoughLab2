@@ -1,22 +1,25 @@
 .app {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-  background: black;
-  color: white;
-  overflow-x: hidden;
-  justify-content: center;
+	box-sizing: border-box;
+	border: 5px solid rgb(67, 67, 67);
+	border-radius: 20px;
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+	background: rgb(31, 20, 57);
+	color: white;
+	overflow-x: hidden;
+	justify-content: center;
 }
 
 .scrollArea {
-  overflow-x: auto;
-  width: 100%;
+	overflow-x: auto;
+	width: 100%;
 }
 
 .appLayout {
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 2rem;
+	display: flex;
+	flex-direction: column;
+	margin-bottom: 2rem;
 }
 
 @media (orientation: landscape) {
@@ -36,28 +39,28 @@
 
 .projectWrapper {
 	min-width: 300px;
-  display: flex;
-  justify-content: center; /* centers horizontally */
-  align-items: flex-start; /* optional: aligns to top vertically */
-  padding: 1rem;           /* optional: gives breathing room */
-  box-sizing: border-box;  /* ensures padding doesn't cause overflow */
+	display: flex;
+	justify-content: center; /* centers horizontally */
+	align-items: flex-start; /* optional: aligns to top vertically */
+	padding: 1rem;           /* optional: gives breathing room */
+	box-sizing: border-box;  /* ensures padding doesn't cause overflow */
 }
 
 
 .scrollArea {
-  flex: 1; /* grows to fill remaining space */
-  overflow-x: auto;
-  width: 100%;
+	flex: 1; /* grows to fill remaining space */
+	overflow-x: auto;
+	width: 100%;
 }
 
 .fullWidth {
-  width: 100%;
-  box-sizing: border-box;
+	width: 100%;
+	box-sizing: border-box;
 }
 
 @media (orientation: landscape) {
-  .fullWidth {
-    width: auto;
-    min-width: max-content;
-  }
+	.fullWidth {
+		width: auto;
+		min-width: max-content;
+	}
 }

@@ -8,7 +8,7 @@ export default function MouseRing() {
     useEffect(() => {
         const moveRing = (e: MouseEvent) => {
             if (ringRef.current) {
-                ringRef.current.style.transform = `translate(${e.clientX-150}px, ${e.clientY-150}px)`;
+                ringRef.current.style.transform = `translate(${e.clientX - 150}px, ${e.clientY - 150}px)`;
             }
         };
 
