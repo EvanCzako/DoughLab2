@@ -20,8 +20,10 @@ export default function App() {
 			</div>
 			</div>
 
- 			<Skills />
-			<Footer/>
+            <div className={styles.fullWidth}>
+                <Skills />
+                <Footer />
+            </div>
         </main>
     );
 }

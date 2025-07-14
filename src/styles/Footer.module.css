@@ -4,6 +4,8 @@
     background-color: #f5f5f5;
     text-align: center;
 	background-color: blueviolet;
+	width: 100%;
+	box-sizing: border-box;
 }
 
 .linksContainer {

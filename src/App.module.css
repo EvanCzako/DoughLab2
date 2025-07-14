@@ -4,6 +4,7 @@
 	min-height: 100vh; /* ensures full viewport height */
     display: flex;
     flex-direction: column;
+	overflow-x: auto;
 }
 
 
@@ -22,5 +23,17 @@
     .appLayout {
         flex-direction: row;
         align-items: flex-start;
+		
+    }
+}
+
+.fullWidth {
+    width: 100%;
+}
+
+@media (orientation: landscape) {
+    .fullWidth {
+        width: auto;
+        min-width: 100%;
     }
 }
