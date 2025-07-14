@@ -1,12 +1,20 @@
 .app {
     background-color: black;
     color: white;
-}
-
-.appLayout {
+	min-height: 100vh; /* ensures full viewport height */
     display: flex;
     flex-direction: column;
-    min-height: 100vh;
+}
+
+
+.appLayout {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+
+    /* Optional: gives some space between layout and footer */
+    margin-bottom: 2rem;
 }
 
 /* Apply horizontal layout when in landscape mode */

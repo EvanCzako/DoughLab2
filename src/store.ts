@@ -6,6 +6,6 @@ interface FontState {
 }
 
 export const useStore = create<FontState>(set => ({
-    fontSize: 30,
+    fontSize: 25,
     setFontSize: (size: number) => set({ fontSize: size }),
 }));

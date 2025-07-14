@@ -19,17 +19,13 @@ export default function AboutSection() {
                 I'm a full-stack developer passionate about building interactive
                 and performant web applications.
             </p>
-            <div className={styles.linksContainer}>
-                <a href="https://github.com/EvanCzako" target="_blank" rel="noopener noreferrer" className={styles.socialLink}>
-                    <GithubIcon className="social-link" />
-                </a>
-                <a href="https://www.linkedin.com/in/evan-czako/" target="_blank" rel="noopener noreferrer" className={styles.socialLink}>
-                    <LinkedinIcon className="social-link" />
-                </a>
-                <a href="/resume.pdf" target="_blank" rel="noopener noreferrer" className={styles.socialLink}>
-                    <FileIcon className="social-link" />
-                </a>
-            </div>
+			<p>
+				Yo! So blah blah blahawa w ;o; ao; ajawef io a jwefawe. ahweif awef haiwef iu
+				awefa ihu iauwe ui hiu iuaiwuhefiuhaewiuh aiuwe ahef awefi ae aoew aew a 
+				aewiufh iu uhauehi ahiu euhi a hiua ewf awehiu. ,
+
+				 aoeif uiawe ihuaewiuh ahiuwe fuhiaewf auhie fhaiue f. aowe hoi ew!
+			</p>
         </section>
     );
 }
