@@ -5,6 +5,7 @@
   background: black;
   color: white;
   overflow-x: hidden;
+  justify-content: center;
 }
 
 .scrollArea {
@@ -25,21 +26,33 @@
     justify-content: flex-start;
   }
 
-  .aboutWrapper {
-    flex: 1;
-    /* max-width: 400px; */
-  }
 
-  .projectWrapper {
-    /* width: fit-content; */
-    max-width: 100%;
+}
+
+.aboutWrapper {
+	flex: 1;
+	/* max-width: 400px; */
+}
+
+.projectWrapper {
 	min-width: 300px;
-    flex-shrink: 0;
-  }
+  display: flex;
+  justify-content: center; /* centers horizontally */
+  align-items: flex-start; /* optional: aligns to top vertically */
+  padding: 1rem;           /* optional: gives breathing room */
+  box-sizing: border-box;  /* ensures padding doesn't cause overflow */
+}
+
+
+.scrollArea {
+  flex: 1; /* grows to fill remaining space */
+  overflow-x: auto;
+  width: 100%;
 }
 
 .fullWidth {
   width: 100%;
+  box-sizing: border-box;
 }
 
 @media (orientation: landscape) {
