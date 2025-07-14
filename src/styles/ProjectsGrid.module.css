@@ -6,23 +6,26 @@
 }
 
 .projectWrapper {
-    border: 6px solid rgb(159, 28, 195);
-	background-color: rgb(47, 9, 63);
+    border: 6px solid #E43F6F;
+	background-color: #5E4352;
 	border-radius: 15px;
 	padding: 10px;
     transition: 0.5s;
     display: flex;
 	margin-bottom: 10px;
+	/* box-shadow: -7px 9px 5px 0px rgba(244, 243, 245, 0.75); */
+	-webkit-box-shadow: -7px 9px 5px 0px rgba(114, 40, 143, 0.75);
+	/* -moz-box-shadow: -7px 9px 5px 0px rgba(244, 243, 245, 0.75); */
 }
 
 .projectWrapper:hover {
-    border: 10px solid rgb(229, 112, 196);
+    border: 10px solid #F56476;
     transition: 0.5s;
 }
 
 .projectLink {
 	font-size:large;
-	color: rgb(252, 176, 76);
+	color: #DFBBB1;
 	font-weight: 800;
 }
 

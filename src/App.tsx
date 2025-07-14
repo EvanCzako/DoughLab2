@@ -9,6 +9,7 @@ import styles from './App.module.css';
 export default function App() {
     return (
         <main className={styles.app}>
+			<MouseRing/>
             <div className={styles.scrollArea}>
                 <div className={styles.appLayout}>
                     <div className={styles.aboutWrapper}>
