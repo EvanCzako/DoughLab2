@@ -1,0 +1,22 @@
+.aboutSection {
+	border: 3px solid gray;
+}
+
+.linksContainer {
+	border: 3px solid purple;
+}
+
+.socialLink {
+	border: 3px solid greenyellow;
+	padding: 3px;
+}
+
+.socialLink svg {
+	transition: 0.3s;
+	fill:aquamarine
+}
+
+.socialLink:hover svg {
+	transform: scale(1.2);
+	transition: 0.3s;
+}

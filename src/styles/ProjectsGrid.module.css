@@ -1,0 +1,13 @@
+.projectWrapper {
+	border: 5px solid red;
+	transition: 0.5s
+}
+ 
+.projectWrapper:hover {
+	border: 15px solid pink;
+	transition: 0.5s;
+}
+
+.projectSection {
+	border: 3px solid orange;
+}

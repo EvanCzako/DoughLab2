@@ -1,0 +1,18 @@
+.app {
+    background-color: black;
+    color: white;
+}
+
+.appLayout {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Apply horizontal layout when in landscape mode */
+@media (orientation: landscape) {
+    .appLayout {
+        flex-direction: row;
+        align-items: flex-start;
+    }
+}
