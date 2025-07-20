@@ -23,7 +23,9 @@
 	margin-bottom: 2rem;
 }
 
-@media (orientation: landscape) {
+/* @media (orientation: landscape) */
+
+@media (aspect-ratio > 1.3) {
   .appLayout {
     flex-direction: row;
     align-items: flex-start;
