@@ -35,3 +35,10 @@
 	display: flex;
 	align-items: center;
 }
+
+.projectImage {
+	width: 150px;
+	height: auto;
+	margin-top: 0px;
+	border-radius: 20px;
+}

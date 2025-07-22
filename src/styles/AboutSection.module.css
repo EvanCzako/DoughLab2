@@ -24,17 +24,26 @@
     transition: 0.3s;
 }
 
+@media (min-width: 600px) {
+		.aboutImage {
+			margin-top: 100px;
 
-img {
-	margin-top: 100px;
-	/* width: 10vw;
-	height: 13.58vw; */
+	}
+}
+
+.aboutImage {
+	/* margin-top: 100px; */
 	width: 300px;
 	height: 408px;
 	flex-shrink: 0;
+	border-radius: 25px;
 }
 
 .aboutSectionWrapper {
 	display: flex;
 	flex-direction: row;
+}
+
+.name {
+	padding: none;
 }

@@ -20,6 +20,9 @@ export default function App() {
     return (
         <main className={styles.app}>
 			<MouseRing/>
+            <div className={styles.fullWidth}>
+                <Footer />
+            </div>
             <div className={styles.scrollArea}>
                 <div className={styles.appLayout}>
                     <div className={styles.aboutWrapper}>
