@@ -9,6 +9,8 @@ const FileIcon = FaFileAlt as React.FC<React.SVGProps<SVGSVGElement>>;
 export default function Footer() {
     const fontSize = useStore(s => s.fontSize);
 
+	console.log(process.env.PUBLIC_URL);
+
     return (
         <section className={styles.footer} style={{ fontSize }}>
             <div className={styles.linksContainer}>
@@ -29,7 +31,7 @@ export default function Footer() {
                     <LinkedinIcon className="social-link" />
                 </a>
 				<a
-					href={`${process.env.PUBLIC_URL}/resume.pdf`}
+					href="https://evanczako.github.io/DoughLab2/resume.pdf"
 					target="_blank"
 					rel="noopener noreferrer"
 					className={styles.socialLink}
