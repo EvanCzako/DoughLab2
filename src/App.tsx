@@ -34,8 +34,12 @@ export default function App() {
                 </div>
             </div>
 
-            <div className={styles.fullWidth}>
+ 			<div className={styles.fullWidth}>
                 <Skills />
+                {/* <Footer /> */}
+            </div>
+            <div className={styles.fullWidth}>
+                {/* <Skills /> */}
                 <Footer />
             </div>
         </main>

@@ -23,8 +23,6 @@
 	margin-bottom: 2rem;
 }
 
-/* @media (orientation: landscape) */
-
 @media (aspect-ratio > 4) {
   .appLayout {
     flex-direction: row;
@@ -59,11 +57,4 @@
 .fullWidth {
 	width: 100%;
 	box-sizing: border-box;
-}
-
-@media (orientation: landscape) {
-	.fullWidth {
-		width: auto;
-		min-width: max-content;
-	}
 }
