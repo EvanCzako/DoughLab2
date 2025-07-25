@@ -28,12 +28,7 @@ export default function Footer() {
                 >
                     <LinkedinIcon className="social-link" />
                 </a>
-                <a
-                    href="/resume.pdf"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={styles.socialLink}
-                >
+				<a href="/resume.pdf" target="_blank" rel="noopener noreferrer" className={styles.socialLink}>
                     <FileIcon className="social-link" />
                 </a>
             </div>
