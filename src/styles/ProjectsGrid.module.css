@@ -3,6 +3,9 @@
     width: clamp(250px, 100%, 550px);
     padding: 1rem;
     box-sizing: border-box;
+	width: 90vw;
+	max-width: 1000px;
+	min-width: 600px;
 }
 
 .projectWrapper {
@@ -16,6 +19,9 @@
 	/* box-shadow: -7px 9px 5px 0px rgba(244, 243, 245, 0.75); */
 	-webkit-box-shadow: -7px 9px 5px 0px rgba(114, 40, 143, 0.75);
 	/* -moz-box-shadow: -7px 9px 5px 0px rgba(244, 243, 245, 0.75); */
+
+ flex: 1 1 45%; /* Shrinks/grows with a preferred width of 45% */
+  min-width: 200px; /* Prevents items from becoming too small */
 }
 
 .projectWrapper:hover {
@@ -23,10 +29,35 @@
     transition: 0.5s;
 }
 
+.gridWrapper {
+	/* background-color: #F56476; */
+	justify-content: center;
+	display: grid;
+	grid-template-columns: repeat(2, 1fr); /* 2 columns */
+	gap: 1rem;
+	gap: 1rem;
+}
+
+@media (max-width: 600px) {
+  .gridWrapper {
+    grid-template-columns: 1fr;
+  }
+
+  .projectSection {
+	min-width: auto;
+  }
+}
+
 .projectLink {
 	font-size:large;
 	color: #DFBBB1;
 	font-weight: 800;
+	background-color: black;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	aspect-ratio: 1/1;
+	border-radius: 10px;
 }
 
 .projectDescription {

@@ -9,8 +9,6 @@ const FileIcon = FaFileAlt as React.FC<React.SVGProps<SVGSVGElement>>;
 export default function Footer() {
     const fontSize = useStore(s => s.fontSize);
 
-	console.log(process.env.PUBLIC_URL);
-
     return (
         <section className={styles.footer} style={{ fontSize }}>
             <div className={styles.linksContainer}>
