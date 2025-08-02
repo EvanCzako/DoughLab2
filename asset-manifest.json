@@ -1,20 +1,21 @@
 {
   "files": {
-    "main.css": "/DoughLab2/static/css/main.997f88aa.css",
-    "main.js": "/DoughLab2/static/js/main.fbe722e0.js",
+    "main.css": "/DoughLab2/static/css/main.3117157a.css",
+    "main.js": "/DoughLab2/static/js/main.aa746a57.js",
     "static/js/453.99a56d4b.chunk.js": "/DoughLab2/static/js/453.99a56d4b.chunk.js",
     "static/media/Evan2.jpg": "/DoughLab2/static/media/Evan2.1a4234c3925b5188476e.jpg",
     "static/media/Evan.jpg": "/DoughLab2/static/media/Evan.ae100c98f89304f65bd3.jpg",
+    "static/media/SynthPuttyLogo.png": "/DoughLab2/static/media/SynthPuttyLogo.0cc4b01311b1201c9760.png",
     "static/media/DoughLoops2-2.png": "/DoughLab2/static/media/DoughLoops2-2.e983bae99621809decb3.png",
     "static/media/MusicNotes.png": "/DoughLab2/static/media/MusicNotes.006c6260f136cf69e11e.png",
     "static/media/ChordFinder.png": "/DoughLab2/static/media/ChordFinder.8cf8867011d41d868e2a.png",
     "index.html": "/DoughLab2/index.html",
-    "main.997f88aa.css.map": "/DoughLab2/static/css/main.997f88aa.css.map",
-    "main.fbe722e0.js.map": "/DoughLab2/static/js/main.fbe722e0.js.map",
+    "main.3117157a.css.map": "/DoughLab2/static/css/main.3117157a.css.map",
+    "main.aa746a57.js.map": "/DoughLab2/static/js/main.aa746a57.js.map",
     "453.99a56d4b.chunk.js.map": "/DoughLab2/static/js/453.99a56d4b.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.997f88aa.css",
-    "static/js/main.fbe722e0.js"
+    "static/css/main.3117157a.css",
+    "static/js/main.aa746a57.js"
   ]
 }
