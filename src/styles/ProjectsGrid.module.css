@@ -11,11 +11,13 @@
 .projectWrapper {
     border: 6px solid #E43F6F;
 	background-color: #5E4352;
+	color: #DFBBB1;
 	border-radius: 15px;
 	padding: 10px;
     transition: 0.5s;
     display: flex;
 	margin-bottom: 10px;
+	text-decoration: none;
 	/* box-shadow: -7px 9px 5px 0px rgba(244, 243, 245, 0.75); */
 	-webkit-box-shadow: -7px 9px 5px 0px rgba(114, 40, 143, 0.75);
 	/* -moz-box-shadow: -7px 9px 5px 0px rgba(244, 243, 245, 0.75); */

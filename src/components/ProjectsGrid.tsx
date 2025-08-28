@@ -28,12 +28,12 @@ export default function ProjectsGrid() {
             <h2>Projects</h2>
             <div className={styles.gridWrapper}>
                 {projects.map((project, idx) => (
-                    <div className={styles.projectWrapper}>
+                    <a href={project.link} className={styles.projectWrapper} target='_blank'>
                         <a key={idx} href={project.link} className={styles.projectLink} target='_blank'>
 							<img className={styles.projectImage} src={project.img} alt=""/>
                         </a>
                         <div className={styles.projectDescription} style={{fontSize: fontSize*0.8}}>{project.description}</div>
-                    </div>
+                    </a>
                 ))}
             </div>
         </section>
