@@ -22,7 +22,7 @@ export default function AboutSection() {
 					Hi, I’m Evan Czako — a fullstack developer with a passion for building dynamic, engaging, and educational applications.
 				</p>
 				<p>
-					I earned my engineering degree from Cornell University and began my career as an optical process engineer at ASML, where I developed deep technical expertise using tools like MATLAB. Eager to shift toward software development, I completed the rigorous App Academy coding bootcamp curriculum and now work full-time as a fintech software engineer. Along the way, I’ve built up a strong skill set across the full stack, including React, SolidJS, Express, MongoDB, SQL, Ruby on Rails, Redux, Zustand, Python, and more.
+					I earned my engineering degree from Cornell University in 2018 and began my career as an optical process engineer at ASML, where I developed deep technical expertise using tools like MATLAB. Eager to shift toward software development, I completed the rigorous App Academy coding bootcamp curriculum and began working full-time as a fintech software engineer at Bloomberg from 2022 - 2025. Along the way, I’ve built up a strong skill set across the full stack, including React, SolidJS, Express, MongoDB, SQL, Ruby on Rails, Redux, Zustand, Python, and more.
 				</p>
 				<p>
 					But what truly excites me is building tools that intersect with my creative passions. My portfolio includes projects like DoughLoops, a fully customizable drum machine and step sequencer with user authentication and beat-saving features, and ChordFinder, a MIDI-compatible chord identifier for musicians and learners alike. I’ve also spent years developing games in Unity and Godot, further blending code with creativity.
