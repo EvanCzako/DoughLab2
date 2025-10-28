@@ -60,6 +60,7 @@
 	justify-content: center;
 	aspect-ratio: 1/1;
 	border-radius: 10px;
+	width: 150px;
 }
 
 .projectDescription {
