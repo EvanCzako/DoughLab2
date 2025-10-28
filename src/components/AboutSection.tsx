@@ -12,7 +12,7 @@ export default function AboutSection() {
 			
 			<div className={styles.aboutSection} style={{ fontSize }}>
 				<h1 className={styles.name}>Evan Czako</h1>
-				{vw <= 6 && <img src={EvanImg2} alt="" className={styles.aboutImage} style={{height: `${6.32*fontSize*2.2}px`, width: `${9.504*fontSize*2.2}px`}}/>}
+				{vw <= 9 && <img src={EvanImg2} alt="" className={styles.aboutImage} style={{height: `${6.32*fontSize*2.2}px`, width: `${9.504*fontSize*2.2}px`}}/>}
 				<p>
 					Hi, I’m Evan Czako — a fullstack developer with a passion for building dynamic, engaging, and educational applications.
 				</p>
@@ -26,7 +26,7 @@ export default function AboutSection() {
 					All of my applications are built to be responsive, mobile-friendly, and user-centered. I’m always looking to collaborate, learn, and create—so if anything resonates with you, feel free to reach out!
 				</p>
 			</div>
-			{vw > 6 && <img src={EvanImg} alt="" className={styles.aboutImage} style={{height: `${13.58*fontSize*1.3}px`, width: `${10*fontSize*1.3}px`}}/>}
+			{vw > 9 && <img src={EvanImg} alt="" className={styles.aboutImage} style={{height: `${13.58*fontSize*1.3}px`, width: `${10*fontSize*1.3}px`}}/>}
 			
 			
 		</div>
