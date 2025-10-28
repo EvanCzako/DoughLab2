@@ -21,17 +21,16 @@ const projects = [
 export default function ProjectsGrid() {
 
     const fontSize = useStore(s => s.fontSize);
-	const vw = useStore(s => s.vw);
 
     return (
         <section className={styles.projectSection}>
             <h2>Projects</h2>
             <div className={styles.gridWrapper}>
                 {projects.map((project, idx) => (
-                    <a href={project.link} className={styles.projectWrapper} target='_blank'>
-                        <a key={idx} href={project.link} className={styles.projectLink} target='_blank'>
-							<img className={styles.projectImage} src={project.img} alt=""/>
-                        </a>
+                    <a key={idx} href={project.link} className={styles.projectWrapper} target='_blank' rel="noopener noreferrer">
+                        <div className={styles.projectLink}>
+                            <img className={styles.projectImage} src={project.img} alt={project.title} />
+                        </div>
                         <div className={styles.projectDescription} style={{fontSize: fontSize*0.8}}>{project.description}</div>
                     </a>
                 ))}

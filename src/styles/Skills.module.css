@@ -18,3 +18,13 @@
     margin-top: 1rem;
     font-size: 1rem;
 }
+
+.skillsList li {
+    background: rgba(255,255,255,0.04);
+    color: #DFBBB1;
+    padding: 0.45rem 0.75rem;
+    border-radius: 999px;
+    font-weight: 500;
+    border: 1px solid rgba(255,255,255,0.04);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.45);
+}

@@ -14,15 +14,26 @@
 }
 
 .socialLink {
-    padding: 3px;
+    padding: 6px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    transition: background-color 180ms ease, transform 180ms ease;
 }
 
 .socialLink svg {
-    transition: 0.3s;
+    transition: transform 180ms ease, fill 180ms ease;
     fill: #E43F6F;
+    width: 22px;
+    height: 22px;
 }
 
 .socialLink:hover svg {
-    transform: scale(1.2);
-    transition: 0.3s;
+    transform: scale(1.16);
+}
+
+.socialLink:focus {
+    outline: 2px solid rgba(228,63,111,0.25);
+    outline-offset: 2px;
 }

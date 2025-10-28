@@ -29,7 +29,7 @@ export default function Footer() {
                     <LinkedinIcon className="social-link" />
                 </a>
 				<a
-					href="https://evanczako.github.io/DoughLab2/resume.pdf"
+					href="https://evanczako.github.io/DoughLab2/resume_fullstack.pdf"
 					target="_blank"
 					rel="noopener noreferrer"
 					className={styles.socialLink}

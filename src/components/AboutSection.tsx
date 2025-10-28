@@ -1,12 +1,7 @@
-import { FaGithub, FaLinkedin, FaFileAlt } from 'react-icons/fa';
 import { useStore } from '../store';
 import styles from '../styles/AboutSection.module.css';
 import EvanImg from '../Evan.jpg';
 import EvanImg2 from '../Evan2.jpg';
-
-const GithubIcon = FaGithub as React.FC<React.SVGProps<SVGSVGElement>>;
-const LinkedinIcon = FaLinkedin as React.FC<React.SVGProps<SVGSVGElement>>;
-const FileIcon = FaFileAlt as React.FC<React.SVGProps<SVGSVGElement>>;
 
 export default function AboutSection() {
     const fontSize = useStore(s => s.fontSize);

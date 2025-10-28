@@ -42,8 +42,25 @@
 .aboutSectionWrapper {
 	display: flex;
 	flex-direction: row;
+	align-items: flex-start;
+	gap: 1rem;
 }
 
 .name {
-	padding: none;
+	padding: 0;
+	margin: 0 0 0.5rem 0;
+}
+
+@media (max-width: 900px) {
+    .aboutSectionWrapper {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .aboutImage {
+        margin-top: 0;
+        width: 240px;
+        height: auto;
+    }
 }
