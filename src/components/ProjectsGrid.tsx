@@ -3,7 +3,6 @@ import styles from '../styles/ProjectsGrid.module.css';
 import ChordFinder from '../ChordFinder.png';
 import DoughLoops2 from '../DoughLoops2-2.png';
 import SynthPutty from '../SynthPuttyLogo.png';
-import MusicNotes from '../MusicNotes.png';
 import { useStore } from '../store';
 
 const projects = [
@@ -15,7 +14,7 @@ const projects = [
     },
     { title: 'ChordFinder', description: 'Identify harmonies!', link: 'https://evanczako.github.io/ChordFinder2/', img: ChordFinder },
 	{ title: 'SynthPutty', description: 'Build synthesizers from the ground-up!', link: 'https://evanczako.github.io/SynthPutty/', img: SynthPutty },
-    { title: 'Music', description: 'A link to my music on Spotify (also on all other platforms)!', link: 'https://open.spotify.com/artist/68GBBhx96KrDxce6eT0Tzz', img: MusicNotes },
+    { title: 'MATLAB', description: 'Check out my MATLAB Central profile!', link: 'https://www.mathworks.com/matlabcentral/profile/authors/13527609', img: `${process.env.PUBLIC_URL}/Matlab_Logo.png` },
 ];
 
 export default function ProjectsGrid() {
