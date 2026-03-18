@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import { useEffect } from 'react';
 import AboutSection from './components/AboutSection';
 import ProjectsGrid from './components/ProjectsGrid';
 import MouseRing from './components/MouseRing';
@@ -8,40 +8,37 @@ import styles from './App.module.css';
 import { useStore } from './store';
 
 export default function App() {
+    const updateVw = useStore(s => s.updateVw);
 
-	const updateFontSize = useStore(s => s.updateFontSize);
-
-	useEffect(() => {
-		updateFontSize();
-		window.addEventListener('resize', updateFontSize);
-		return () => window.removeEventListener('resize', updateFontSize);
-	}, [updateFontSize]);
+    useEffect(() => {
+        updateVw();
+        let debounceTimer: ReturnType<typeof setTimeout>;
+        const handleResize = () => {
+            clearTimeout(debounceTimer);
+            debounceTimer = setTimeout(updateVw, 100);
+        };
+        window.addEventListener('resize', handleResize);
+        return () => {
+            window.removeEventListener('resize', handleResize);
+            clearTimeout(debounceTimer);
+        };
+    }, [updateVw]);
 
     return (
         <main className={styles.app}>
-			<MouseRing/>
-            <div className={styles.fullWidth}>
-                <Footer />
-            </div>
-            <div className={styles.scrollArea}>
-                <div className={styles.appLayout}>
-                    <div className={styles.aboutWrapper}>
-                        <AboutSection />
-                    </div>
-                    <div className={styles.projectWrapper}>
-                        <ProjectsGrid />
-                    </div>
+            <MouseRing />
+            <header className={styles.siteHeader}>
+                <span className={styles.siteName}>Dough's Lab</span>
+                <Footer variant="header" />
+            </header>
+            <div className={styles.contentContainer}>
+                <div className={styles.mainGrid}>
+                    <AboutSection />
+                    <ProjectsGrid />
                 </div>
             </div>
-
- 			<div className={styles.fullWidth}>
-                <Skills />
-                {/* <Footer /> */}
-            </div>
-            <div className={styles.fullWidth}>
-                {/* <Skills /> */}
-                <Footer />
-            </div>
+            <Skills />
+            <Footer />
         </main>
     );
 }

@@ -1,9 +1,9 @@
 {
-  "short_name": "DoughLab2",
-  "name": "Evan Czako Portfolio",
-  "start_url": ".",
-  "display": "standalone",
-  "background_color": "#ffffff",
-  "description": "Beat-making app!",
-  "icons": []
+    "short_name": "DoughLab2",
+    "name": "Evan Czako Portfolio",
+    "start_url": ".",
+    "display": "standalone",
+    "background_color": "#ffffff",
+    "description": "Beat-making app!",
+    "icons": []
 }

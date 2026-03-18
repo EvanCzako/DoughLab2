@@ -1,16 +1,20 @@
+import { FC, SVGProps } from 'react';
 import { FaGithub, FaLinkedin, FaFileAlt } from 'react-icons/fa';
-import { useStore } from '../store';
 import styles from '../styles/Footer.module.css';
 
-const GithubIcon = FaGithub as React.FC<React.SVGProps<SVGSVGElement>>;
-const LinkedinIcon = FaLinkedin as React.FC<React.SVGProps<SVGSVGElement>>;
-const FileIcon = FaFileAlt as React.FC<React.SVGProps<SVGSVGElement>>;
+const GithubIcon = FaGithub as FC<SVGProps<SVGSVGElement>>;
+const LinkedinIcon = FaLinkedin as FC<SVGProps<SVGSVGElement>>;
+const FileIcon = FaFileAlt as FC<SVGProps<SVGSVGElement>>;
 
-export default function Footer() {
-    const fontSize = useStore(s => s.fontSize);
+export default function Footer({
+    variant = 'footer',
+}: {
+    variant?: 'header' | 'footer';
+}) {
+    const cls = variant === 'header' ? styles.footerHeader : styles.footer;
 
     return (
-        <section className={styles.footer} style={{ fontSize }}>
+        <section className={cls}>
             <div className={styles.linksContainer}>
                 <a
                     href="https://github.com/EvanCzako"
@@ -18,7 +22,7 @@ export default function Footer() {
                     rel="noopener noreferrer"
                     className={styles.socialLink}
                 >
-                    <GithubIcon className="social-link" />
+                    <GithubIcon />
                 </a>
                 <a
                     href="https://www.linkedin.com/in/evan-czako/"
@@ -26,16 +30,16 @@ export default function Footer() {
                     rel="noopener noreferrer"
                     className={styles.socialLink}
                 >
-                    <LinkedinIcon className="social-link" />
+                    <LinkedinIcon />
                 </a>
-				<a
-					href="https://evanczako.github.io/DoughLab2/resume_fullstack.pdf"
-					target="_blank"
-					rel="noopener noreferrer"
-					className={styles.socialLink}
-				>
-					<FileIcon />
-				</a>
+                <a
+                    href="https://evanczako.github.io/DoughLab2/resume_fullstack.pdf"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={styles.socialLink}
+                >
+                    <FileIcon />
+                </a>
             </div>
         </section>
     );

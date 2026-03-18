@@ -1,5 +1,3 @@
-// src/components/Skills.tsx
-import React from 'react';
 import styles from '../styles/Skills.module.css';
 
 export default function Skills() {
@@ -17,9 +15,8 @@ export default function Skills() {
                 <li>SQL</li>
                 <li>Python</li>
                 <li>Java</li>
-				<li>TypeScript</li>
+                <li>TypeScript</li>
                 <li>MATLAB</li>
-                {/* Add more as needed */}
             </ul>
         </section>
     );

@@ -1,16 +1,25 @@
 .footer {
-    margin-top: auto; /* pushes the footer down if there's extra space */
-    padding: 1rem;
+    padding: 0.75rem 1rem;
     text-align: center;
-    background-color: #36262f;
-    width: 100%;
+    background-color: #24283b;
     box-sizing: border-box;
+    margin: 0 0.75rem;
+    border: 1px solid rgba(146, 115, 203, 0.15);
+    border-top: none;
+    border-radius: 0 0 12px 12px;
+}
 
+.footerHeader {
+    background: transparent;
+    padding: 0;
+    display: flex;
+    align-items: center;
 }
 
 .linksContainer {
-	display: flex;
-	justify-content: space-evenly;
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
 }
 
 .socialLink {
@@ -19,21 +28,24 @@
     align-items: center;
     justify-content: center;
     border-radius: 8px;
-    transition: background-color 180ms ease, transform 180ms ease;
+    transition: transform 180ms ease;
 }
 
 .socialLink svg {
-    transition: transform 180ms ease, fill 180ms ease;
-    fill: #E43F6F;
+    transition:
+        transform 180ms ease,
+        fill 180ms ease;
+    fill: rgb(232, 190, 116);
     width: 22px;
     height: 22px;
 }
 
 .socialLink:hover svg {
-    transform: scale(1.16);
+    transform: scale(1.2);
+    fill: #bb9af7;
 }
 
 .socialLink:focus {
-    outline: 2px solid rgba(228,63,111,0.25);
+    outline: 2px solid rgba(146, 115, 203, 0.35);
     outline-offset: 2px;
 }
