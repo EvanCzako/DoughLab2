@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/static/css/main.03b44e97.css",
-    "main.js": "/static/js/main.a4545cb1.js",
-    "static/js/453.99a56d4b.chunk.js": "/static/js/453.99a56d4b.chunk.js",
+    "main.js": "/static/js/main.c27cc198.js",
+    "static/js/453.66d08535.chunk.js": "/static/js/453.66d08535.chunk.js",
     "static/media/Evan2.jpg": "/static/media/Evan2.1a4234c3925b5188476e.jpg",
     "static/media/Evan.jpg": "/static/media/Evan.ae100c98f89304f65bd3.jpg",
     "static/media/SynthPuttyLogo.png": "/static/media/SynthPuttyLogo.0cc4b01311b1201c9760.png",
@@ -10,11 +10,11 @@
     "static/media/ChordFinder.png": "/static/media/ChordFinder.8cf8867011d41d868e2a.png",
     "index.html": "/index.html",
     "main.03b44e97.css.map": "/static/css/main.03b44e97.css.map",
-    "main.a4545cb1.js.map": "/static/js/main.a4545cb1.js.map",
-    "453.99a56d4b.chunk.js.map": "/static/js/453.99a56d4b.chunk.js.map"
+    "main.c27cc198.js.map": "/static/js/main.c27cc198.js.map",
+    "453.66d08535.chunk.js.map": "/static/js/453.66d08535.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.03b44e97.css",
-    "static/js/main.a4545cb1.js"
+    "static/js/main.c27cc198.js"
   ]
 }
