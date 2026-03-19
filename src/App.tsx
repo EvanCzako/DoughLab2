@@ -28,7 +28,7 @@ export default function App() {
         <main className={styles.app}>
             <MouseRing />
             <header className={styles.siteHeader}>
-                <span className={styles.siteName}>Dough's Lab</span>
+                <span className={styles.siteName}>Dough Boi's Bakery</span>
                 <Footer variant="header" />
             </header>
             <div className={styles.contentContainer}>
