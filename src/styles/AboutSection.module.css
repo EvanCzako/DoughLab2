@@ -1,187 +1,88 @@
 .aboutCard {
-    background: #24283b;
-    border: 1px solid rgba(146, 115, 203, 0.15);
-    border-radius: 20px;
-    padding: 1.25rem;
-    box-sizing: border-box;
     display: flex;
     flex-direction: column;
+    gap: var(--space-md);
+    padding: var(--space-lg);
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius-xl);
 }
 
-.aboutRow {
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-    gap: 1.75rem;
-    flex: 1;
-    min-height: 0;
+/* <picture> is inline by default, which leaves a descender gap under the
+   image and makes flex sizing behave oddly. */
+.portraitFrame {
+    display: block;
+    flex-shrink: 0;
 }
 
-.textContent {
-    flex: 1;
+.portrait {
+    display: block;
+    width: 100%;
+    /* Cropped rather than letterboxed: the narrow source is a 3:2 landscape
+       frame and a bare `height: auto` left a very short strip on a phone. */
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+    object-position: center 35%;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--ui-border);
+    box-shadow: var(--shadow-lg);
+}
+
+.body {
     min-width: 0;
-    min-height: 0;
-    font-size: clamp(0.9rem, 1.5vw, 1.1rem);
-    font-weight: 500;
-    line-height: 1.75;
-    color: #c0caf5;
-    display: flex;
-    flex-direction: column;
-}
-
-.bioText {
-    min-height: 0;
-    scrollbar-width: thin;
-    scrollbar-color: rgba(146, 115, 203, 0.4) transparent;
-}
-
-.bioText::-webkit-scrollbar {
-    width: 4px;
-}
-
-.bioText::-webkit-scrollbar-track {
-    background: transparent;
-}
-
-.bioText::-webkit-scrollbar-thumb {
-    background: rgba(146, 115, 203, 0.4);
-    border-radius: 4px;
-}
-
-.bioText::-webkit-scrollbar-thumb:hover {
-    background: rgba(146, 115, 203, 0.65);
-}
-
-.bioText p {
-    margin: 0 0 1rem 0;
-}
-
-.bioText p:last-child {
-    margin-bottom: 0;
 }
 
 .name {
-    margin: 0 0 1rem 0;
-    font-size: clamp(1.6rem, 3.5vw, 2.2rem);
-    color: rgb(232, 190, 116);
-    font-weight: 700;
-    flex-shrink: 0;
-}
-
-.imageSide {
-    display: none;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.75rem;
-    flex-shrink: 0;
-}
-
-.nameLandscape {
     margin: 0;
-    font-size: clamp(1.2rem, 2.5vw, 1.6rem);
-    color: rgb(232, 190, 116);
+    font-size: var(--text-xl);
     font-weight: 700;
-    text-align: center;
-    flex-shrink: 0;
+    line-height: 1.15;
+    color: var(--ui-text-gold);
 }
 
-.aboutImage {
-    flex-shrink: 0;
-    width: clamp(160px, 16vw, 210px);
-    height: auto;
-    object-fit: cover;
-    border-radius: 14px;
-    border: 1px solid rgba(146, 115, 203, 0.35);
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+.tagline {
+    margin: var(--space-xs) 0 var(--space-md);
+    font-size: var(--text-sm);
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ui-text-muted);
 }
 
-.aboutImageMobile {
-    display: block;
-    width: clamp(200px, 70vw, 300px);
-    height: auto;
-    margin: 0.5rem auto 1.5rem;
-    border-radius: 14px;
-    border: 1px solid rgba(146, 115, 203, 0.35);
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
-    flex-shrink: 0;
+.bio {
+    font-size: var(--text-md);
+    font-weight: 400;
+    line-height: 1.7;
+    /* Past roughly 75 characters a line gets hard to track back to the start
+       of the next one, and this column is wider than that on a large screen. */
+    max-width: 68ch;
 }
 
-/* Desktop portrait: image column visible, bio scrolls */
-@media (min-width: 900px) and (orientation: portrait) {
+.bio p {
+    margin: 0 0 var(--space-md);
+}
+
+.bio p:last-child {
+    margin-bottom: 0;
+}
+
+/* ---- Responsive overrides -------------------------------------------------
+   Last in the file on purpose: a media query adds no specificity, so these
+   beat their unconditional counterparts on source order alone.
+
+   The width here must match WIDE_LAYOUT in AboutSection.tsx, which is what
+   selects the tall crop this rule assumes. */
+
+@media (min-width: 700px) {
     .aboutCard {
-        height: calc(100svh - 4rem);
-        overflow: hidden;
-    }
-
-    .imageSide {
-        display: flex;
-    }
-
-    .nameLandscape {
-        display: none;
-    }
-
-    .bioText {
-        flex: 1;
-        overflow-y: auto;
-        min-height: 0;
-        padding-right: 0.5rem;
-    }
-}
-
-/* Mobile portrait: single column, bio scrolls below name + image */
-@media (max-width: 900px) and (orientation: portrait) {
-    .aboutCard {
-        height: calc(100svh - 4rem);
-        overflow: hidden;
-    }
-
-    .aboutRow {
-        flex-direction: column;
-        align-items: stretch;
-    }
-
-    .textContent {
-        font-size: clamp(0.88rem, 3vw, 1rem);
-    }
-
-    .bioText {
-        flex: 1;
-        overflow-y: auto;
-        min-height: 0;
-    }
-}
-
-/* All landscape: bio scrolls on left, name + image pinned on right */
-@media (orientation: landscape) {
-    .aboutRow {
         flex-direction: row;
         align-items: flex-start;
+        gap: var(--space-lg);
     }
 
-    .name {
-        display: none;
-    }
-
-    .imageSide {
-        display: flex;
-    }
-
-    .nameLandscape {
-        display: block;
-    }
-
-    .aboutImage {
-        width: clamp(160px, 18vh, 210px);
-    }
-
-    .aboutImageMobile {
-        display: none;
-    }
-
-    .bioText {
-        overflow-y: auto;
-        max-height: calc(100svh - 8rem);
-        padding-right: 0.5rem;
+    .portrait {
+        width: clamp(150px, 15vw, 200px);
+        aspect-ratio: 3 / 4;
+        object-position: center;
     }
 }

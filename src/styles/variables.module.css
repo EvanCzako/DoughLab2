@@ -1,0 +1,364 @@
+/*
+ * Single source of truth for design tokens.
+ *
+ * Every custom property in the app is declared here. CSS modules must not
+ * declare their own :root blocks -- :root inside a module is global, so those
+ * declarations leak app-wide from unpredictable places and load order decides
+ * the winner.
+ *
+ * Structure:
+ *   1. Seeds      -- 13 colors per theme. The ONLY thing a theme overrides.
+ *   2. Derived    -- every semantic and component token, computed from seeds
+ *                    with color-mix(). Written once, never per theme.
+ *   3. Structure  -- sizes, radii, motion, elevation. Theme-independent.
+ *
+ * Adding a theme means adding one [data-theme='...'] block of seeds at the
+ * bottom of this file. Nothing else.
+ *
+ * The seed values are shared verbatim with DoughLoops2, ChordFinder and
+ * SynthPutty so the four apps read as one family; only the derived layer
+ * differs. The portfolio does not use every seed -- --seed-active and
+ * --seed-playhead only feed the theme switcher's preview swatches, and
+ * --seed-clear and --seed-danger nothing at all -- but the blocks stay
+ * identical to the sibling apps' so they can be copied across without
+ * editing.
+ */
+
+:root {
+    /* ---- 1. Seeds: Midnight (default) ----------------------------------- */
+    --seed-page: #0b0b10;
+    --seed-bg: #16161e;
+    --seed-surface: #24283b;
+    --seed-surface-2: #2f3449;
+    --seed-overlay: #111116;
+    --seed-border: #414868;
+    --seed-text: #c0caf5;
+    --seed-accent: #bb9af7;
+
+    --seed-active: #ff9e64;
+    --seed-playhead: #f7768e;
+
+    --seed-clear: #7dcfff;
+    --seed-vol: #d9a974;
+    --seed-danger: #f7768e;
+}
+
+/* ---- 2. Derived: everything the components actually reference ----------- */
+
+:root {
+    --ui-page-bg: var(--seed-page);
+    --ui-surface-light: var(--seed-surface-2);
+    --ui-surface-overlay: var(--seed-overlay);
+    /* Cards sit on the page; this recesses their inner wells (the project
+     * thumbnails) without inventing a colour. */
+    --ui-surface-sunken: color-mix(in srgb, var(--seed-bg) 82%, var(--seed-page));
+    --ui-border: var(--seed-border);
+    /* Panel edges want to be felt, not read. Mixed toward the surface they sit
+     * on so the same value works in both polarities. */
+    --ui-border-soft: color-mix(in srgb, var(--seed-border) 55%, var(--seed-surface));
+    --ui-text-primary: var(--seed-text);
+    /* 78%, not the sibling apps' 62%: there this token carries one line of
+     * error-boundary text, here it carries the tagline, every project blurb
+     * and the colophon. Measured across all fourteen themes, 62% bottomed out
+     * at 3.44:1 against the recessed card fill (Sand) -- under AA for 14px
+     * body text. 78% floors at about 5:1 and is still visibly dimmer than
+     * --ui-text-primary. */
+    --ui-text-muted: color-mix(in srgb, var(--seed-text) 78%, var(--seed-surface));
+
+    --ui-accent: var(--seed-accent);
+    --ui-accent-2: color-mix(in srgb, var(--seed-accent) 78%, var(--seed-surface));
+    --ui-hover: color-mix(in srgb, var(--seed-accent) 34%, var(--seed-surface));
+    /* The accent at card-fill strength, for the skill pills. */
+    --ui-accent-wash: color-mix(in srgb, var(--seed-accent) 12%, var(--seed-surface));
+    --ui-accent-wash-hover: color-mix(in srgb, var(--seed-accent) 22%, var(--seed-surface));
+
+    /* Headings. Mixing toward the text colour makes this readable in both
+     * polarities: it darkens on light themes and lightens on dark ones.
+     *
+     * It floors at 3.85:1 on Candy, so it is only for text that clears AA's
+     * large-text bar -- the name, the section headings, the site name, all
+     * bold at 18.4px or above -- and for the footer's icons, which are
+     * graphics. Ordinary-sized bold text (the project card titles) uses
+     * --ui-text-primary instead. */
+    --ui-text-gold: color-mix(in srgb, var(--seed-vol) 72%, var(--seed-text));
+
+    /* ---- Cards ---------------------------------------------------------- */
+    --card-bg: var(--seed-surface);
+    /* The full border seed, not --ui-border-soft: on the light themes the
+     * page, the card and the recessed fill are all within 1.1:1 of each other,
+     * so the outline is the only thing separating a card from what it sits
+     * on. Soft measured 1.17:1 against the card and simply disappeared. */
+    --card-border: var(--ui-border);
+    --card-border-hover: var(--seed-accent);
+
+    /* ---- Cursor glow ---------------------------------------------------- */
+    /* An alpha mix rather than an rgba() literal, so the glow takes the
+     * theme's accent instead of one hardcoded lilac. */
+    --glow-tint: color-mix(in srgb, var(--seed-accent) 9%, transparent);
+
+    --scrollbar-thumb: color-mix(in srgb, var(--seed-accent) 70%, var(--seed-bg));
+    --scrollbar-track: color-mix(in srgb, var(--seed-bg) 70%, var(--seed-page));
+}
+
+/* ---- 3. Structure: theme-independent ----------------------------------- */
+
+:root {
+    /* Type scale. Components never invent their own multiplier. */
+    --text-xs: 0.78rem;
+    --text-sm: 0.88rem;
+    --text-md: 1rem;
+    --text-lg: 1.15rem;
+    --text-xl: clamp(1.4rem, 3vw, 2rem);
+
+    --space-xs: 0.35rem;
+    --space-sm: 0.6rem;
+    --space-md: 1rem;
+    --space-lg: 1.5rem;
+
+    /* Outer page gutter. Shared by the header, the content column and the
+     * footer so their edges line up. */
+    --page-gutter: 0.75rem;
+    --content-max: 1200px;
+
+    --radius-md: 8px;
+    --radius-lg: 12px;
+    --radius-xl: 20px;
+
+    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
+    --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.3);
+    --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.45);
+
+    --focus-ring: 0 0 0 2px var(--seed-bg), 0 0 0 4px var(--ui-accent);
+    --transition-fast: 120ms ease;
+    --transition-base: 200ms ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    :root {
+        --transition-fast: 0ms;
+        --transition-base: 0ms;
+    }
+}
+
+/* ---- Themes: seeds only ------------------------------------------------ */
+
+/* Deep violet with electric lilac. */
+[data-theme='plum'] {
+    --seed-page: #0d0716;
+    --seed-bg: #150d24;
+    --seed-surface: #221537;
+    --seed-surface-2: #2e1d49;
+    --seed-overlay: #0f0819;
+    --seed-border: #432b66;
+    --seed-text: #e2d6f8;
+    --seed-accent: #a678ff;
+    --seed-active: #ffb2e6;
+    --seed-playhead: #66e0c0;
+    --seed-clear: #78c8ff;
+    --seed-vol: #d9b06a;
+    --seed-danger: #ff6b9d;
+}
+
+/* High-contrast cyberpunk: near-black with electric cyan and magenta. */
+[data-theme='neon'] {
+    --seed-page: #05050a;
+    --seed-bg: #0a0a14;
+    --seed-surface: #141428;
+    --seed-surface-2: #1d1d3a;
+    --seed-overlay: #08080f;
+    --seed-border: #2e2e5c;
+    --seed-text: #d8f6ff;
+    --seed-accent: #00e5ff;
+    --seed-active: #ff2bd6;
+    --seed-playhead: #00ff9d;
+    --seed-clear: #00e5ff;
+    --seed-vol: #ffd166;
+    --seed-danger: #ff2b6b;
+}
+
+/* Deep water: navy ground, aqua highlights. */
+[data-theme='ocean'] {
+    --seed-page: #04101a;
+    --seed-bg: #071c2b;
+    --seed-surface: #0e2c40;
+    --seed-surface-2: #143a53;
+    --seed-overlay: #05141f;
+    --seed-border: #245a77;
+    --seed-text: #cfe9f5;
+    --seed-accent: #4fc3d9;
+    --seed-active: #ffd166;
+    --seed-playhead: #ff6f91;
+    --seed-clear: #4fc3d9;
+    --seed-vol: #e0b877;
+    --seed-danger: #ff6f91;
+}
+
+/* Deep greens and moss with an amber pulse. */
+[data-theme='forest'] {
+    --seed-page: #080d0a;
+    --seed-bg: #101a14;
+    --seed-surface: #19281e;
+    --seed-surface-2: #22362a;
+    --seed-overlay: #0c1410;
+    --seed-border: #33503d;
+    --seed-text: #d6e8d8;
+    --seed-accent: #7fc98a;
+    --seed-active: #e0b34d;
+    --seed-playhead: #ff9a52;
+    --seed-clear: #6fb3b8;
+    --seed-vol: #b9a76b;
+    --seed-danger: #e2705a;
+}
+
+/* Black ground, phosphor green. */
+[data-theme='terminal'] {
+    --seed-page: #000000;
+    --seed-bg: #030703;
+    --seed-surface: #0a120a;
+    --seed-surface-2: #101c10;
+    --seed-overlay: #020502;
+    --seed-border: #1d331d;
+    --seed-text: #9bf29b;
+    --seed-accent: #33ff66;
+    --seed-active: #33ff66;
+    --seed-playhead: #ccff33;
+    --seed-clear: #7dffc4;
+    --seed-vol: #8fdf6a;
+    --seed-danger: #ff5c5c;
+}
+
+/* Warm and on-brand for a bakery: espresso, cream and caramel. */
+[data-theme='bakery'] {
+    --seed-page: #17100c;
+    --seed-bg: #221812;
+    --seed-surface: #35251b;
+    --seed-surface-2: #46311f;
+    --seed-overlay: #1b120d;
+    --seed-border: #5e4530;
+    --seed-text: #f4e3cf;
+    --seed-accent: #e8a33d;
+    --seed-active: #f0b455;
+    --seed-playhead: #ff7a59;
+    --seed-clear: #7fb3ad;
+    --seed-vol: #d9a974;
+    --seed-danger: #e2705a;
+}
+
+/* Dusk gradient feel: violet ground, orange and coral highlights. */
+[data-theme='sunset'] {
+    --seed-page: #150a1a;
+    --seed-bg: #1f0f26;
+    --seed-surface: #301641;
+    --seed-surface-2: #3f1e53;
+    --seed-overlay: #170b1d;
+    --seed-border: #5a2d6e;
+    --seed-text: #f6dfef;
+    --seed-accent: #ff8fb1;
+    --seed-active: #ffa552;
+    --seed-playhead: #ffe066;
+    --seed-clear: #b58cff;
+    --seed-vol: #ffc978;
+    --seed-danger: #ff5d8f;
+}
+
+/* Muted burgundy and dusty rose. */
+[data-theme='rose'] {
+    --seed-page: #170c10;
+    --seed-bg: #21131a;
+    --seed-surface: #331d27;
+    --seed-surface-2: #452833;
+    --seed-overlay: #190e14;
+    --seed-border: #5e3a48;
+    --seed-text: #f0dde3;
+    --seed-accent: #d98fa4;
+    --seed-active: #e8a0a8;
+    --seed-playhead: #ffb37a;
+    --seed-clear: #8fb0c4;
+    --seed-vol: #d3a07f;
+    --seed-danger: #d96b7f;
+}
+
+/* Restrained greyscale with a single accent. */
+[data-theme='mono'] {
+    --seed-page: #0c0c0c;
+    --seed-bg: #141414;
+    --seed-surface: #1e1e1e;
+    --seed-surface-2: #2a2a2a;
+    --seed-overlay: #101010;
+    --seed-border: #3a3a3a;
+    --seed-text: #ededed;
+    --seed-accent: #f5f5f5;
+    --seed-active: #ffffff;
+    --seed-playhead: #ff4d4d;
+    --seed-clear: #9a9a9a;
+    --seed-vol: #8a8a8a;
+    --seed-danger: #ff4d4d;
+}
+
+/* Light theme -- proves the token layer works in both polarities. */
+[data-theme='daylight'] {
+    --seed-page: #e8e6f0;
+    --seed-bg: #f7f6fb;
+    --seed-surface: #ffffff;
+    --seed-surface-2: #f0eef7;
+    --seed-overlay: #ffffff;
+    --seed-border: #c9c5da;
+    --seed-text: #2b2740;
+    --seed-accent: #6c4bd8;
+    --seed-active: #f2802a;
+    --seed-playhead: #e0356b;
+    --seed-clear: #2a9bd8;
+    --seed-vol: #c98a2e;
+    --seed-danger: #d12b52;
+}
+
+/* Cool, pale and bright. */
+[data-theme='arctic'] {
+    --seed-page: #dfe8f0;
+    --seed-bg: #f2f7fb;
+    --seed-surface: #ffffff;
+    --seed-surface-2: #e9f1f7;
+    --seed-overlay: #ffffff;
+    --seed-border: #bccddd;
+    --seed-text: #22323f;
+    --seed-accent: #1b7fa8;
+    --seed-active: #ff8c42;
+    --seed-playhead: #d63d6e;
+    --seed-clear: #1b7fa8;
+    --seed-vol: #c2812c;
+    --seed-danger: #cc2e50;
+}
+
+/* Light and playful pastels. */
+[data-theme='candy'] {
+    --seed-page: #f5e7f2;
+    --seed-bg: #fdf4fa;
+    --seed-surface: #ffffff;
+    --seed-surface-2: #fbeaf5;
+    --seed-overlay: #ffffff;
+    --seed-border: #e4c2da;
+    --seed-text: #46293e;
+    --seed-accent: #d94f9c;
+    --seed-active: #ffa93d;
+    --seed-playhead: #5ec8d8;
+    --seed-clear: #4fb6cc;
+    --seed-vol: #d9932f;
+    --seed-danger: #d93f6e;
+}
+
+/* Warm paper and clay. */
+[data-theme='sand'] {
+    --seed-page: #e9e0d1;
+    --seed-bg: #f7f1e6;
+    --seed-surface: #fffaf2;
+    --seed-surface-2: #f1e7d7;
+    --seed-overlay: #fffaf2;
+    --seed-border: #d3c3a9;
+    --seed-text: #3d3326;
+    --seed-accent: #b06a2c;
+    --seed-active: #d98324;
+    --seed-playhead: #c0453f;
+    --seed-clear: #3f7f8f;
+    --seed-vol: #a87a3a;
+    --seed-danger: #b83a34;
+}

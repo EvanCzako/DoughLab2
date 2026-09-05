@@ -1,22 +1,32 @@
 import styles from '../styles/Skills.module.css';
 
+const SKILLS = [
+    'React',
+    'SolidJS',
+    'Redux',
+    'Zustand',
+    'TypeScript',
+    'Python',
+    'Java',
+    'Ruby on Rails',
+    'Express',
+    'MongoDB',
+    'SQL',
+    'MATLAB',
+] as const;
+
 export default function Skills() {
     return (
-        <section className={styles.skillsSection}>
-            <h2>Skills</h2>
-            <ul className={styles.skillsList}>
-                <li>React</li>
-                <li>SolidJS</li>
-                <li>Redux</li>
-                <li>Zustand</li>
-                <li>Ruby on Rails</li>
-                <li>Express</li>
-                <li>MongoDB</li>
-                <li>SQL</li>
-                <li>Python</li>
-                <li>Java</li>
-                <li>TypeScript</li>
-                <li>MATLAB</li>
+        <section className={styles.skillsSection} aria-labelledby="skills-heading">
+            <h2 id="skills-heading" className={styles.heading}>
+                Skills
+            </h2>
+            <ul className={styles.list}>
+                {SKILLS.map((skill) => (
+                    <li key={skill} className={styles.pill}>
+                        {skill}
+                    </li>
+                ))}
             </ul>
         </section>
     );

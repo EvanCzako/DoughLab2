@@ -1,66 +1,76 @@
 import styles from '../styles/ProjectsGrid.module.css';
-import ChordFinder from '../ChordFinder.png';
-import DoughLoops2 from '../DoughLoops2-2.png';
-import SynthPutty from '../SynthPuttyLogo.png';
+import ChordFinderLogo from '../ChordFinder.png';
+import DoughLoopsLogo from '../DoughLoops2-2.png';
+import SynthPuttyLogo from '../SynthPuttyLogo.png';
+import MatlabLogo from '../Matlab_Logo.png';
 
-const projects = [
+/*
+ * Logos are imported rather than read from PUBLIC_URL so they go through the
+ * bundler: content-hashed filenames mean a replaced logo is picked up instead
+ * of being served from cache until someone hard-refreshes.
+ */
+const PROJECTS = [
     {
         title: 'DoughLoops',
         description: 'Make unique beats and rhythms!',
         link: 'https://evanczako.github.io/DoughLoops2/',
-        img: DoughLoops2,
+        img: DoughLoopsLogo,
     },
     {
         title: 'ChordFinder',
         description: 'Identify harmonies and chord voicings!',
         link: 'https://evanczako.github.io/ChordFinder2/',
-        img: ChordFinder,
+        img: ChordFinderLogo,
     },
     {
         title: 'SynthPutty',
         description: 'Build synthesizers from the ground up!',
         link: 'https://evanczako.github.io/SynthPutty/',
-        img: SynthPutty,
+        img: SynthPuttyLogo,
     },
     {
         title: 'MATLAB Central',
         description: 'Check out my MATLAB Central profile!',
         link: 'https://www.mathworks.com/matlabcentral/profile/authors/13527609',
-        img: `${process.env.PUBLIC_URL}/Matlab_Logo.png`,
+        img: MatlabLogo,
     },
-];
+] as const;
 
 export default function ProjectsGrid() {
     return (
-        <section className={styles.projectSection}>
-            <h2>Projects</h2>
-            <div className={styles.gridWrapper}>
-                {projects.map(project => (
-                    <a
-                        key={project.title}
-                        href={project.link}
-                        className={styles.projectWrapper}
-                        rel="noopener noreferrer"
-                    >
-                        <div className={styles.projectLink}>
-                            <img
-                                className={styles.projectImage}
-                                src={project.img}
-                                alt={project.title}
-                                loading="lazy"
-                            />
-                        </div>
-                        <div className={styles.projectInfo}>
-                            <div className={styles.projectTitle}>
-                                {project.title}
-                            </div>
-                            <div className={styles.projectDescription}>
-                                {project.description}
-                            </div>
-                        </div>
-                    </a>
+        <section className={styles.projectSection} aria-labelledby="projects-heading">
+            <h2 id="projects-heading" className={styles.heading}>
+                Projects
+            </h2>
+
+            <ul className={styles.grid}>
+                {PROJECTS.map((project) => (
+                    <li key={project.title}>
+                        <a
+                            href={project.link}
+                            className={styles.card}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            <span className={styles.thumb}>
+                                {/* The link is named by the title below, so the
+                                    logo is decorative and stays out of the
+                                    accessible name. */}
+                                <img
+                                    className={styles.thumbImage}
+                                    src={project.img}
+                                    alt=""
+                                    loading="lazy"
+                                />
+                            </span>
+                            <span className={styles.info}>
+                                <span className={styles.title}>{project.title}</span>
+                                <span className={styles.description}>{project.description}</span>
+                            </span>
+                        </a>
+                    </li>
                 ))}
-            </div>
+            </ul>
         </section>
     );
 }

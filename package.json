@@ -25,7 +25,12 @@
         "build": "react-scripts build",
         "test": "react-scripts test",
         "eject": "react-scripts eject",
-        "prettier": "npx prettier --write .",
+        "prettier:check": "npx prettier . --check",
+        "prettier:fix": "npx prettier . --write",
+        "lint": "npx eslint src --ext .ts,.tsx",
+        "lint:fix": "npx eslint src --ext .ts,.tsx --fix",
+        "typecheck": "tsc --noEmit",
+        "check": "npm run typecheck && npm run lint && npm run build",
         "predeploy": "npm run build",
         "deploy": "gh-pages -d build"
     },

@@ -1,119 +1,115 @@
 .projectSection {
-    text-align: center;
-    padding: 1.25rem;
-    box-sizing: border-box;
-    background: #24283b;
-    border: 1px solid rgba(146, 115, 203, 0.15);
-    border-radius: 20px;
+    padding: var(--space-lg);
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius-xl);
+    /* The card layout below reacts to this panel's own width, not the
+       viewport's -- in the two-column band the panel is much narrower than the
+       window, and a viewport media query switched it at the wrong moment. */
     container-type: inline-size;
 }
 
-.projectSection h2 {
-    color: rgb(232, 190, 116);
+.heading {
+    margin: 0 0 var(--space-md);
+    font-size: var(--text-lg);
     font-weight: 700;
-    margin-bottom: 1rem;
+    color: var(--ui-text-gold);
 }
 
-.projectWrapper {
-    background-color: #24283b;
-    color: #c0caf5;
-    border-radius: 14px;
-    padding: 14px;
-    transition:
-        transform 220ms ease,
-        box-shadow 220ms ease,
-        border-color 220ms ease;
+.grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--space-md);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.card {
     display: flex;
     align-items: center;
-    gap: 14px;
+    gap: var(--space-md);
+    height: 100%;
+    padding: var(--space-sm);
+    background: var(--ui-surface-sunken);
+    color: var(--ui-text-primary);
     text-decoration: none;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
-    border: 1px solid rgba(146, 115, 203, 0.2);
-    overflow: hidden;
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    transition:
+        transform var(--transition-base),
+        box-shadow var(--transition-base),
+        border-color var(--transition-base);
 }
 
-.projectWrapper:hover {
-    transform: translateY(-4px) scale(1.01);
-    box-shadow:
-        0 12px 28px rgba(0, 0, 0, 0.5),
-        0 0 0 1px rgba(146, 115, 203, 0.5);
-    border-color: rgba(146, 115, 203, 0.55);
+.card:hover {
+    transform: translateY(-4px);
+    border-color: var(--card-border-hover);
+    box-shadow: var(--shadow-md);
 }
 
-.gridWrapper {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1rem;
-    justify-items: stretch;
+/* The ring is restated here rather than left to the global :focus-visible
+   rule in index.css. Both selectors carry one class's worth of specificity, so
+   .card's unconditional `box-shadow: var(--shadow-sm)` -- loaded after
+   index.css -- won on source order and swallowed the ring entirely. */
+.card:focus-visible {
+    outline: none;
+    border-color: var(--card-border-hover);
+    box-shadow: var(--focus-ring);
 }
 
-@media (max-width: 900px) {
-    .gridWrapper {
-        grid-template-columns: 1fr;
-    }
-}
-
-
-.projectLink {
+.thumb {
     display: flex;
     align-items: center;
     justify-content: center;
-    aspect-ratio: 1/1;
-    border-radius: 10px;
-    width: 90px;
-    background: #1a1b26;
     flex-shrink: 0;
-    border: 1px solid rgba(146, 115, 203, 0.2);
+    width: 74px;
+    aspect-ratio: 1;
+    padding: 6px;
+    background: var(--ui-page-bg);
+    border: 1px solid var(--ui-border-soft);
+    border-radius: var(--radius-md);
 }
 
-.projectInfo {
+.thumbImage {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.info {
     display: flex;
     flex-direction: column;
-    gap: 5px;
-    text-align: left;
+    gap: 3px;
+    min-width: 0;
 }
 
-.projectTitle {
-    font-size: 1.05em;
+.title {
+    font-size: var(--text-md);
     font-weight: 700;
-    color: rgb(232, 190, 116);
+    /* Not --ui-text-gold: 16px bold is not WCAG "large text", and the gold
+       measured 3.4:1 on the recessed fill under the Candy theme. */
+    color: var(--ui-text-primary);
 }
 
-.projectDescription {
-    font-size: 0.85em;
-    color: #c0caf5;
-    opacity: 0.8;
+.description {
+    font-size: var(--text-sm);
     line-height: 1.4;
+    color: var(--ui-text-muted);
 }
 
-.projectImage {
-    width: 90px;
-    object-fit: contain;
-    border-radius: 8px;
-}
+/* ---- Responsive overrides -------------------------------------------------
+   Last in the file on purpose: a container query adds no specificity, so these
+   beat their unconditional counterparts on source order alone. */
 
-@container (max-width: 500px) {
-    .gridWrapper {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    .projectWrapper {
-        justify-content: center;
-        padding: 8px;
-    }
-
-    .projectInfo {
-        display: none;
-    }
-
-    .projectLink {
-        width: 100%;
-        aspect-ratio: 1 / 1;
-    }
-
-    .projectImage {
-        width: 100%;
-        height: 100%;
-        object-fit: contain;
+/* Two per row only once each card still has room for its description beside
+   the logo -- 74px thumbnail, two gaps and roughly 22 characters of text.
+   Below that the cards stay full width and stacked, rather than dropping the
+   titles the way the old two-up layout did: a grid of four unlabelled logos
+   gave a screen reader nothing but the alt text to go on. */
+@container (min-width: 560px) {
+    .grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 }

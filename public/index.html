@@ -2,14 +2,28 @@
 <html lang="en">
     <head>
         <meta charset="utf-8" />
-        <!-- <link rel="icon" href="%PUBLIC_URL%/favicon.ico" /> -->
+        <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+        <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+        <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+        <!-- Space Grotesk itself is requested from index.css; preconnecting here
+             starts the TLS handshake before the CSS has even parsed. -->
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="theme-color" content="#000000" />
+        <!-- Matches --seed-page of the default Midnight theme. -->
+        <meta name="theme-color" content="#0b0b10" />
         <meta
             name="description"
-            content="Evan Czako Software Portfolio"
+            content="Evan Czako — fullstack developer. Portfolio of music and audio web apps: DoughLoops, ChordFinder and SynthPutty."
         />
-        <title>Dough Boi's Bakery</title>
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="Evan Czako — Fullstack Developer" />
+        <meta
+            property="og:description"
+            content="Portfolio of music and audio web apps: DoughLoops, ChordFinder and SynthPutty."
+        />
+        <meta property="og:url" content="https://evanczako.com/" />
+        <title>Evan Czako — Fullstack Developer</title>
     </head>
     <body>
         <noscript>You need to enable JavaScript to run this app.</noscript>

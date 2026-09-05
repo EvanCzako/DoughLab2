@@ -1,46 +1,42 @@
 .skillsSection {
-    padding: 1rem;
-    background-color: #24283b;
-    color: #c0caf5;
-    text-align: center;
-    box-sizing: border-box;
-    margin: 0 0.75rem;
-    border: 1px solid rgba(146, 115, 203, 0.15);
-    border-bottom: none;
-    border-radius: 12px 12px 0 0;
+    padding: var(--space-lg);
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius-xl);
 }
 
-.skillsSection h2 {
-    color: rgb(232, 190, 116);
+.heading {
+    margin: 0 0 var(--space-md);
+    font-size: var(--text-lg);
     font-weight: 700;
-    margin-bottom: 0.5rem;
+    color: var(--ui-text-gold);
 }
 
-.skillsList {
+.list {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
-    gap: 0.75rem;
-    list-style: none;
+    gap: var(--space-sm);
+    margin: 0;
     padding: 0;
-    margin-top: 0.5rem;
-    font-size: 1rem;
+    list-style: none;
 }
 
-.skillsList li {
-    background: rgba(146, 115, 203, 0.1);
-    color: #c0caf5;
-    padding: 0.4rem 0.9rem;
-    border-radius: 999px;
+.pill {
+    padding: var(--space-xs) 0.9rem;
+    background: var(--ui-accent-wash);
+    color: var(--ui-text-primary);
+    font-size: var(--text-sm);
     font-weight: 500;
-    border: 1px solid rgba(146, 115, 203, 0.3);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    border: 1px solid var(--ui-border-soft);
+    border-radius: 999px;
+    /* Colour only. Animating font-size or padding on hover reflows the whole
+       wrapped list and shuffles every pill after the one under the cursor. */
     transition:
-        border-color 0.18s,
-        background 0.18s;
+        border-color var(--transition-base),
+        background-color var(--transition-base);
 }
 
-.skillsList li:hover {
-    border-color: rgba(146, 115, 203, 0.65);
-    background: rgba(146, 115, 203, 0.18);
+.pill:hover {
+    background: var(--ui-accent-wash-hover);
+    border-color: var(--ui-accent);
 }

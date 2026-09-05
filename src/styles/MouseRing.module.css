@@ -1,18 +1,23 @@
-/* MouseRing.module.css */
+/* Size must stay in step with RING_RADIUS_PX in MouseRing.tsx, which is half
+   of it -- the offset that centres the glow on the pointer. */
 .mouseRing {
     position: fixed;
     top: 0;
     left: 0;
     width: 800px;
     height: 800px;
+    /* Hidden until the first mousemove writes a transform, so it never shows
+       up parked in the corner. */
+    opacity: 0;
     pointer-events: none;
-    will-change: transform;
     border-radius: 50%;
-    transition: transform 0.05s linear;
-    background: radial-gradient(
-        circle,
-        rgba(146, 115, 203, 0.08) 0%,
-        transparent 60%
-    );
-    z-index: 9999;
+    background: radial-gradient(circle, var(--glow-tint) 0%, transparent 60%);
+    will-change: transform;
+    transition:
+        transform 60ms linear,
+        opacity var(--transition-base);
+    /* Above the cards, so the wash reads across the whole page -- but well
+       below the theme panel's 1000. At the old 9999 the glow painted over the
+       panel and tinted every swatch in it. */
+    z-index: 1;
 }
