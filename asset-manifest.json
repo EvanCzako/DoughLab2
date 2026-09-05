@@ -1,20 +1,21 @@
 {
   "files": {
-    "main.css": "/static/css/main.03b44e97.css",
-    "main.js": "/static/js/main.c27cc198.js",
+    "main.css": "/static/css/main.ea40ea8d.css",
+    "main.js": "/static/js/main.5b8f05e8.js",
     "static/js/453.66d08535.chunk.js": "/static/js/453.66d08535.chunk.js",
-    "static/media/Evan2.jpg": "/static/media/Evan2.1a4234c3925b5188476e.jpg",
-    "static/media/Evan.jpg": "/static/media/Evan.ae100c98f89304f65bd3.jpg",
-    "static/media/SynthPuttyLogo.png": "/static/media/SynthPuttyLogo.0cc4b01311b1201c9760.png",
-    "static/media/DoughLoops2-2.png": "/static/media/DoughLoops2-2.e983bae99621809decb3.png",
-    "static/media/ChordFinder.png": "/static/media/ChordFinder.8cf8867011d41d868e2a.png",
+    "static/media/Evan2.jpg": "/static/media/Evan2.25331ad1c2f374412f55.jpg",
+    "static/media/Evan.jpg": "/static/media/Evan.92cc7daa1aade3ec8d86.jpg",
+    "static/media/Matlab_Logo.png": "/static/media/Matlab_Logo.3021755644cfdc686390.png",
+    "static/media/SynthPuttyLogo.png": "/static/media/SynthPuttyLogo.6808cdcc91cff2f9cd80.png",
+    "static/media/ChordFinder.png": "/static/media/ChordFinder.de567b598bf7706f34b0.png",
+    "static/media/DoughLoops2-2.png": "/static/media/DoughLoops2-2.afab5ba45ea88964319c.png",
     "index.html": "/index.html",
-    "main.03b44e97.css.map": "/static/css/main.03b44e97.css.map",
-    "main.c27cc198.js.map": "/static/js/main.c27cc198.js.map",
+    "main.ea40ea8d.css.map": "/static/css/main.ea40ea8d.css.map",
+    "main.5b8f05e8.js.map": "/static/js/main.5b8f05e8.js.map",
     "453.66d08535.chunk.js.map": "/static/js/453.66d08535.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.03b44e97.css",
-    "static/js/main.c27cc198.js"
+    "static/css/main.ea40ea8d.css",
+    "static/js/main.5b8f05e8.js"
   ]
 }
