@@ -6,6 +6,12 @@ import styles from '../styles/ThemeSwitcher.module.css';
 /* Gap between the trigger and the panel below it. */
 const PANEL_OFFSET_PX = 8;
 
+/* Smallest gap left between the panel and the edge of the viewport. Matches
+ * the 20px total that .panel's `width: min(400px, calc(100vw - 20px))`
+ * reserves, so on a narrow screen the panel lands centred in the space that
+ * width leaves it. */
+const VIEWPORT_MARGIN_PX = 10;
+
 const TONE_GROUPS = [
     { tone: 'dark', label: 'Dark' },
     { tone: 'light', label: 'Light' },
@@ -31,12 +37,31 @@ export default function ThemeSwitcher() {
 
         const place = () => {
             const rect = triggerRef.current?.getBoundingClientRect();
-            if (rect) {
-                setPos({
-                    top: rect.bottom + PANEL_OFFSET_PX,
-                    right: window.innerWidth - rect.right,
-                });
-            }
+            const panel = panelRef.current;
+            if (!rect || !panel) return;
+
+            /*
+             * The panel hangs from the trigger's right edge, which silently
+             * assumes the trigger sits within ~10px of the viewport edge --
+             * true in the sibling apps, whose header is inset only by a 5px
+             * panel gap and its own padding.
+             *
+             * Here the header is inset by the page gutter AND its own 1.5rem
+             * padding, putting the trigger 37px in. At 390px the panel is
+             * 370px wide, so 390 - 37 - 370 left it hanging 17px off the far
+             * side of the screen. Clamping the anchor keeps the left edge on
+             * screen; where the trigger is already near the edge the clamp
+             * does not bind and the panel stays flush with it as before.
+             */
+            const maxRight = Math.max(
+                VIEWPORT_MARGIN_PX,
+                window.innerWidth - panel.offsetWidth - VIEWPORT_MARGIN_PX
+            );
+
+            setPos({
+                top: rect.bottom + PANEL_OFFSET_PX,
+                right: Math.min(window.innerWidth - rect.right, maxRight),
+            });
         };
 
         place();

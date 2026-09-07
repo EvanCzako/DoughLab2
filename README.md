@@ -14,3 +14,9 @@ npm start      # dev server
 npm run build  # production build
 npm run deploy # build + publish to gh-pages
 ```
+
+`public/CNAME` must stay in `public/`, not the repo root. `gh-pages -d build`
+replaces the whole publishing branch with `build/`, and CRA only copies
+`public/` into `build/` — a root-level CNAME is never published, so GitHub
+drops the custom domain on the next deploy and evanczako.com starts returning
+"Site not found".
