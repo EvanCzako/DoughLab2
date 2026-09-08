@@ -24,3 +24,6 @@ yarn-error.log*
 
 # local tooling state
 .claude/settings.local.json
+
+# local screenshot harness, not for deploy
+/public/__viewports.html

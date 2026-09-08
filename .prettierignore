@@ -2,3 +2,6 @@ build
 coverage
 package-lock.json
 .claude
+
+# generated: one 30KB base64 data URI, nothing to format
+tools/space-grotesk-latin.css

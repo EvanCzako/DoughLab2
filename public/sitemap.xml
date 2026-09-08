@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  One entry, because the hub is one page: the About, Skills and Projects
+  sections are anchors on it, not routes, and a sitemap lists documents.
+
+  The three apps are deliberately absent. A sitemap may only list URLs on the
+  host that serves it, so evanczako.github.io/... entries here would simply be
+  ignored. They get their own sitemaps once they move onto subdomains; see
+  phase 4 in PLAN.md.
+-->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    <url>
+        <loc>https://evanczako.com/</loc>
+        <changefreq>monthly</changefreq>
+        <priority>1.0</priority>
+    </url>
+</urlset>

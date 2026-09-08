@@ -1,0 +1,193 @@
+<!doctype html>
+<!--
+  Source for public/og.png -- the social share preview (Slack, LinkedIn,
+  iMessage). Not published: it lives in tools/, not public/, so gh-pages never
+  sees it.
+
+  Regenerate after editing:
+      npm run og
+
+  The seeds below are copied verbatim from the Midnight block in
+  src/styles/variables.module.css, and the two derived colours use the same
+  color-mix() formulas, so the card drifts out of brand only if someone edits
+  the palette and forgets to re-run the script.
+-->
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <link rel="stylesheet" href="./space-grotesk-latin.css" />
+        <style>
+            :root {
+                /* Midnight seeds -- see variables.module.css */
+                --seed-page: #0b0b10;
+                --seed-surface: #24283b;
+                --seed-text: #c0caf5;
+                --seed-accent: #bb9af7;
+                --seed-vol: #d9a974;
+
+                --ui-text-gold: color-mix(in srgb, var(--seed-vol) 72%, var(--seed-text));
+                --ui-text-muted: color-mix(in srgb, var(--seed-text) 78%, var(--seed-surface));
+            }
+
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            /* The screenshot is taken at exactly this size; the body must not
+               introduce scrollbars or the capture picks up a grey gutter. */
+            body {
+                width: 1200px;
+                height: 630px;
+                overflow: hidden;
+                background: var(--seed-page);
+                font-family: 'Space Grotesk', system-ui, sans-serif;
+                -webkit-font-smoothing: antialiased;
+            }
+
+            .card {
+                position: relative;
+                width: 100%;
+                height: 100%;
+                padding: 76px 84px 68px;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+            }
+
+            /* Echo of the cursor glow on the live site, anchored behind the
+               portrait so the top-left corner is not dead black. */
+            .glow {
+                position: absolute;
+                top: -180px;
+                left: -140px;
+                width: 720px;
+                height: 720px;
+                border-radius: 50%;
+                background: radial-gradient(
+                    circle,
+                    color-mix(in srgb, var(--seed-accent) 16%, transparent) 0%,
+                    transparent 65%
+                );
+            }
+
+            .top {
+                position: relative;
+                display: flex;
+                align-items: center;
+                gap: 52px;
+            }
+
+            .portrait {
+                width: 236px;
+                height: 236px;
+                flex: none;
+                border-radius: 50%;
+                object-fit: cover;
+                /* The face sits high in the source crop (442x600); centring
+                   would cut the forehead and leave a band of shirt. */
+                object-position: 50% 28%;
+                border: 3px solid color-mix(in srgb, var(--seed-accent) 55%, var(--seed-page));
+            }
+
+            .name {
+                font-size: 82px;
+                font-weight: 700;
+                line-height: 1;
+                letter-spacing: -0.02em;
+                color: var(--ui-text-gold);
+            }
+
+            .tagline {
+                margin-top: 20px;
+                font-size: 25px;
+                font-weight: 500;
+                letter-spacing: 0.14em;
+                text-transform: uppercase;
+                color: var(--ui-text-muted);
+            }
+
+            .domain {
+                margin-top: 26px;
+                font-size: 25px;
+                font-weight: 500;
+                color: var(--seed-accent);
+            }
+
+            .rule {
+                position: relative;
+                height: 2px;
+                margin-bottom: 46px;
+                background: linear-gradient(
+                    to right,
+                    var(--seed-accent),
+                    color-mix(in srgb, var(--seed-accent) 10%, transparent)
+                );
+            }
+
+            /* Each mark is a wordmark on its own black ground, so they need no
+               labels and no card chrome -- they sit straight on the page
+               colour. Equal heights, natural widths: ChordFinder is 1.85:1
+               where the other two are square. */
+            .logos {
+                position: relative;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                height: 118px;
+            }
+
+            .marks {
+                display: flex;
+                align-items: center;
+                gap: 56px;
+                height: 100%;
+            }
+
+            .marks img {
+                height: 100%;
+                width: auto;
+                object-fit: contain;
+            }
+
+            /* The three wordmarks are coined names -- they say what each app is
+               called and nothing about what it does. This is the only line on
+               the card that says "music". */
+            .caption {
+                max-width: 250px;
+                text-align: right;
+                font-size: 23px;
+                font-weight: 400;
+                line-height: 1.35;
+                color: var(--ui-text-muted);
+            }
+        </style>
+    </head>
+    <body>
+        <div class="card">
+            <div class="glow"></div>
+
+            <div class="top">
+                <img class="portrait" src="../src/Evan.jpg" alt="" />
+                <div>
+                    <div class="name">Evan Czako</div>
+                    <div class="tagline">Fullstack Developer</div>
+                    <div class="domain">evanczako.com</div>
+                </div>
+            </div>
+
+            <div>
+                <div class="rule"></div>
+                <div class="logos">
+                    <div class="marks">
+                        <img src="../src/DoughLoops2-2.png" alt="" />
+                        <img src="../src/ChordFinder.png" alt="" />
+                        <img src="../src/SynthPuttyLogo.png" alt="" />
+                    </div>
+                    <div class="caption">Music&nbsp;&amp; audio apps<br />for the browser</div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

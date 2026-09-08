@@ -23,7 +23,38 @@
             content="Portfolio of music and audio web apps: DoughLoops, ChordFinder and SynthPutty."
         />
         <meta property="og:url" content="https://evanczako.com/" />
+        <meta property="og:site_name" content="Evan Czako" />
+        <!-- Absolute, not %PUBLIC_URL%-relative: the fetch is made by Slack's
+             or LinkedIn's scraper, which has no base URL to resolve against.
+             Regenerate the image itself with `npm run og`. -->
+        <meta property="og:image" content="https://evanczako.com/og.png" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta
+            property="og:image:alt"
+            content="Evan Czako, fullstack developer — DoughLoops, ChordFinder and SynthPutty."
+        />
+        <meta name="twitter:card" content="summary_large_image" />
+        <link rel="canonical" href="https://evanczako.com/" />
         <title>Evan Czako — Fullstack Developer</title>
+        <!-- Feeds the name-query result. sameAs is the list of profiles Google
+             uses to confirm these accounts are the same person. -->
+        <script type="application/ld+json">
+            {
+                "@context": "https://schema.org",
+                "@type": "Person",
+                "name": "Evan Czako",
+                "url": "https://evanczako.com/",
+                "jobTitle": "Fullstack Developer",
+                "alumniOf": "Cornell University",
+                "knowsAbout": ["React", "TypeScript", "Web Audio", "MATLAB"],
+                "sameAs": [
+                    "https://github.com/EvanCzako",
+                    "https://www.linkedin.com/in/evan-czako/",
+                    "https://www.mathworks.com/matlabcentral/profile/authors/13527609"
+                ]
+            }
+        </script>
     </head>
     <body>
         <noscript>You need to enable JavaScript to run this app.</noscript>
