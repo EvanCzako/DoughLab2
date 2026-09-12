@@ -32,10 +32,10 @@ export type ThemeId = (typeof THEMES)[number]['id'];
  * all rather than an attribute that means "the default". */
 export const DEFAULT_THEME: ThemeId = 'midnight';
 
-/* Namespaced to match the sibling apps' keys. They are served from
- * evanczako.github.io and this hub from evanczako.com, so they do not in fact
- * share an origin -- but the naming stays uniform so the four files stay
- * copy-pasteable. */
+/* Namespaced to match the sibling apps' keys. Each app now has its own
+ * subdomain of evanczako.com, and localStorage is keyed by origin rather than
+ * by registrable domain, so they still do not in fact share storage -- but the
+ * naming stays uniform so the four files stay copy-pasteable. */
 const THEME_KEY = 'portfolio.theme';
 
 /* Reading storage is the trust boundary: anything not in the current list is

@@ -3,9 +3,9 @@
 The hub for the DoughLoops family of apps. [evanczako.com](https://evanczako.com)
 
 React + TypeScript (CRA), CSS Modules, and the shared token/theme layer used by
-[DoughLoops2](https://evanczako.github.io/DoughLoops2/),
-[ChordFinder](https://evanczako.github.io/ChordFinder2/) and
-[SynthPutty](https://evanczako.github.io/SynthPutty/) — the seed palettes in
+[DoughLoops2](https://doughloops.evanczako.com/),
+[ChordFinder](https://chordfinder.evanczako.com/) and
+[SynthPutty](https://synthputty.evanczako.com/) — the seed palettes in
 `src/styles/variables.module.css` are shared verbatim across all four.
 
 ```bash

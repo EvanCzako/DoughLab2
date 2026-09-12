@@ -13,19 +13,19 @@ const PROJECTS = [
     {
         title: 'DoughLoops',
         description: 'Make unique beats and rhythms!',
-        link: 'https://evanczako.github.io/DoughLoops2/',
+        link: 'https://doughloops.evanczako.com/',
         img: DoughLoopsLogo,
     },
     {
         title: 'ChordFinder',
         description: 'Identify harmonies and chord voicings!',
-        link: 'https://evanczako.github.io/ChordFinder2/',
+        link: 'https://chordfinder.evanczako.com/',
         img: ChordFinderLogo,
     },
     {
         title: 'SynthPutty',
         description: 'Build synthesizers from the ground up!',
-        link: 'https://evanczako.github.io/SynthPutty/',
+        link: 'https://synthputty.evanczako.com/',
         img: SynthPuttyLogo,
     },
     {

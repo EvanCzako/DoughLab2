@@ -9,14 +9,19 @@ starts being useful.
 
 ## Current state
 
-| Property        | URL                                 | Repo           |
-| --------------- | ----------------------------------- | -------------- |
-| Hub (this repo) | `evanczako.com`                     | `dough-lab-2`  |
-| DoughLoops      | `evanczako.github.io/DoughLoops2/`  | `DoughLoops2`  |
-| ChordFinder     | `evanczako.github.io/ChordFinder2/` | `ChordFinder2` |
-| SynthPutty      | `evanczako.github.io/SynthPutty/`   | `SynthPutty`   |
+| Property        | URL                         | Repo           | Stack |
+| --------------- | --------------------------- | -------------- | ----- |
+| Hub (this repo) | `evanczako.com`             | `dough-lab-2`  | CRA   |
+| DoughLoops      | `doughloops.evanczako.com`  | `DoughLoops2`  | Vite  |
+| ChordFinder     | `chordfinder.evanczako.com` | `ChordFinder2` | Vite  |
+| SynthPutty      | `synthputty.evanczako.com`  | `SynthPutty`   | CRA   |
 
-Two domains, four separately-deployed CRA apps.
+All four now sit on `evanczako.com`, each served over HTTPS from its own GitHub
+Pages repo. The old `evanczako.github.io/<repo>/` URLs 301 to the new hosts, so
+existing links keep working.
+
+All four repos are committed and pushed; nothing below is running from an
+uncommitted working tree.
 
 ---
 
@@ -93,9 +98,9 @@ before-and-after.
       typed, impressions, CTR, indexing errors. Nothing else gives query data.
       Verify `evanczako.com` via a DNS TXT record.
 - [ ] **Submit `https://evanczako.com/sitemap.xml`** in Search Console.
-- [ ] **Verify the three apps** by committing each one's HTML verification file
-      to that repo's `public/`. (Skippable if phase 4 is happening imminently —
-      a DNS-verified domain property will cover all four afterwards.)
+- [ ] **Add the three app subdomains** as properties. Now that the move has
+      landed, a single DNS-verified `evanczako.com` domain property covers all
+      four — no per-repo HTML verification files needed.
 - [ ] **Bing Webmaster Tools** — two minutes, and it's what ChatGPT-style search
       surfaces pull from.
 
@@ -174,14 +179,27 @@ names that do not all match their remotes:
       `public/`). Not the repo root — see the README footgun.
 - [x] **All three rebuilt and verified**: root-relative asset paths, CNAME
       present in the build output.
-- [ ] **Deploy the three apps** (`npm run deploy` in each).
-- [ ] **Confirm each subdomain resolves, bundles load, and HTTPS is
-      provisioned** before treating the old URLs as dead.
-- [ ] **Verify the domain on GitHub** (Settings, Pages, Verify domain). With
-      subdomains in play this is what stops someone else claiming an unused
+- [x] **`predeploy` guard added to `DoughLoops2/client`.** Its `deploy` was a
+      bare `gh-pages -d dist`, which publishes whatever is already sitting in
+      `dist` — a stale build would have shipped the old `/DoughLoops2/` base
+      onto the new subdomain and served a white page. The other two already
+      built on deploy.
+- [x] **All three deployed**, bundle hashes matching the verified local builds.
+- [x] **All three confirmed live**: Let's Encrypt cert issued per host, HTTPS
+      200, root-relative bundles loading, and the old `github.io` URLs 301ing to
+      the new hosts.
+- [x] **Enforce HTTPS enabled** on all three repos (GitHub, repo Settings,
+      Pages). Until this was on, the subdomains served plain HTTP with no
+      upgrade and the 301s from the old URLs landed on `http://`.
+- [ ] **Verify the domain on GitHub.** The challenge TXT record is added and
+      resolving on public DNS; only the Verify button is left to click. Note it
+      lives in _account_ settings (<https://github.com/settings/pages>), not
+      repo settings, and verifying the apex `evanczako.com` covers the
+      subdomains. This is what stops someone else claiming an unused
       `*.evanczako.com` on their own account.
 - [ ] Update the `PROJECTS[].link` values in `src/components/ProjectsGrid.tsx`,
-      then deploy the hub. Do this _after_ the apps are confirmed live.
+      then deploy the hub. The hub still points at the old URLs — they redirect,
+      so nothing is broken, but it is a wasted hop.
 - [ ] Update the links in this repo's `README.md`.
 
 ### DoughLoops' backend — pre-emptive, not blocking
