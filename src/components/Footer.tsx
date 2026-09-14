@@ -1,22 +1,20 @@
 import { FC, SVGProps } from 'react';
-import { FaGithub, FaLinkedin, FaFileAlt } from 'react-icons/fa';
+import { FaGithub, FaLinkedin } from 'react-icons/fa';
 import styles from '../styles/Footer.module.css';
 
 /* react-icons ships its components typed as `IconType`, which React 18's JSX
  * namespace will not accept as an element directly. */
 const GithubIcon = FaGithub as FC<SVGProps<SVGSVGElement>>;
 const LinkedinIcon = FaLinkedin as FC<SVGProps<SVGSVGElement>>;
-const FileIcon = FaFileAlt as FC<SVGProps<SVGSVGElement>>;
 
-/* PUBLIC_URL rather than an absolute evanczako.github.io/DoughLab2/ link: the
- * site moved to its own domain, and the hardcoded path was serving whichever
- * resume happened to be deployed under the old project page. */
-const RESUME_URL = `${process.env.PUBLIC_URL}/resume_fullstack.pdf`;
-
+/* The résumé link and public/resume_fullstack.pdf were both removed
+ * deliberately: nothing should serve a résumé at a stable public URL right now.
+ * Dropping only the link would have left the PDF reachable and indexable, since
+ * GitHub Pages cannot send an X-Robots-Tag header. Restore from git history if
+ * it is ever wanted again, and re-add a Disallow line at the same time. */
 const LINKS = [
     { label: 'GitHub', href: 'https://github.com/EvanCzako', Icon: GithubIcon },
     { label: 'LinkedIn', href: 'https://www.linkedin.com/in/evan-czako/', Icon: LinkedinIcon },
-    { label: 'Résumé (PDF)', href: RESUME_URL, Icon: FileIcon },
 ] as const;
 
 export default function Footer() {

@@ -13,7 +13,13 @@ npm install
 npm start      # dev server
 npm run build  # production build
 npm run deploy # build + publish to gh-pages
+npm run og     # re-render public/og.png from tools/og-card.html
 ```
+
+`npm run og` renders the social share card through headless Chrome at exactly
+1200x630. The card copies its palette seeds from `variables.module.css`, so
+re-run it after any palette change or the card quietly drifts out of brand. All
+four repos carry the same `tools/` kit and the same script.
 
 `public/CNAME` must stay in `public/`, not the repo root. `gh-pages -d build`
 replaces the whole publishing branch with `build/`, and CRA only copies

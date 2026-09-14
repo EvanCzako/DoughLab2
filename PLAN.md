@@ -20,8 +20,23 @@ All four now sit on `evanczako.com`, each served over HTTPS from its own GitHub
 Pages repo. The old `evanczako.github.io/<repo>/` URLs 301 to the new hosts, so
 existing links keep working.
 
-All four repos are committed and pushed; nothing below is running from an
-uncommitted working tree.
+All four repos are committed, pushed and deployed; nothing below is running from
+an uncommitted working tree, and nothing is waiting on a build.
+
+**All four now serve the full metadata set** — title, description, canonical,
+og tags, a 1200x630 card, `sitemap.xml` and a `robots.txt` naming it — verified
+live rather than assumed:
+
+| Host                        | page | og.png | sitemap.xml | robots.txt |
+| --------------------------- | ---- | ------ | ----------- | ---------- |
+| `evanczako.com`             | 200  | 200    | 200         | 200        |
+| `doughloops.evanczako.com`  | 200  | 200    | 200         | 200        |
+| `chordfinder.evanczako.com` | 200  | 200    | 200         | 200        |
+| `synthputty.evanczako.com`  | 200  | 200    | 200         | 200        |
+
+**What is left is phase 2 and phase 5** — Search Console and Bing, then
+analytics. Both are dashboard-and-DNS work rather than code; no repo currently
+needs a change for either.
 
 ---
 
@@ -56,7 +71,10 @@ Already correct, nothing to undo:
 - Apex `evanczako.com` — the four GitHub Pages A records
   (`185.199.108-111.153`).
 - `www` — CNAME to `evanczako.github.io`.
-- No app subdomains exist yet.
+- `doughloops`, `chordfinder`, `synthputty` — CNAME to `evanczako.github.io.`
+  (added in phase 4, all resolving).
+- `_github-pages-challenge-evanczako` — TXT, the domain-verification challenge.
+  Leave it in place permanently; removing it un-verifies the domain.
 
 ## Phase 1 — Hub metadata — DONE
 
@@ -80,36 +98,76 @@ that serves it, so `evanczako.github.io/...` entries would be ignored. The apps
 get their own sitemaps in phase 4. The hub itself is genuinely one page — About,
 Skills and Projects are anchors, not routes.
 
-**`public/resume_fullstack.pdf` is indexable** and linked from the footer, so
-Google will find and index it regardless of the sitemap. Decide whether that's
-wanted. To keep it out of results, add `Disallow: /resume_fullstack.pdf` to
-`robots.txt` — GitHub Pages can't send the `X-Robots-Tag` header that would
-otherwise be the cleaner tool.
+**The résumé was removed rather than hidden — DECIDED.** `public/resume_fullstack.pdf`
+was indexable and linked from the footer, so Google would have indexed it
+regardless of the sitemap. Rather than add a `Disallow` line, both the footer
+link and the PDF itself are gone: a `Disallow` would have left the file
+reachable at a stable public URL to anyone who guessed or had the link, and
+GitHub Pages cannot send the `X-Robots-Tag` header that would otherwise be the
+cleaner tool. Restore from git history if it is wanted again — and add the
+`Disallow` line at the same time if it should stay out of results.
 
-## Phase 2 — Search dashboards, on what exists today
+## Phase 2 — Search dashboards — NOT STARTED, and now the critical path
 
-Do this early and independently of phase 0. Verification takes minutes, but the
-data accrues over weeks — and having numbers from _before_ the rest of the work
-is the only way to tell whether any of it helped. If the apps move in phase 4,
-re-verifying afterwards is another two minutes, which is a fine price for a
-before-and-after.
+Everything else in this plan is done. This is the only remaining work that has a
+clock on it.
 
-- [ ] **Google Search Console** — the actual SEO tool: real queries people
-      typed, impressions, CTR, indexing errors. Nothing else gives query data.
-      Verify `evanczako.com` via a DNS TXT record.
-- [ ] **Submit `https://evanczako.com/sitemap.xml`** in Search Console.
-- [ ] **Add the three app subdomains** as properties. Now that the move has
-      landed, a single DNS-verified `evanczako.com` domain property covers all
-      four — no per-repo HTML verification files needed.
-- [ ] **Bing Webmaster Tools** — two minutes, and it's what ChatGPT-style search
-      surfaces pull from.
+**What Search Console actually is.** Google's dashboard for a site's owner, and
+the only source of one thing: **the queries people typed to reach you**.
+Analytics tools describe what happens _after_ someone arrives; Search Console
+describes what happened _before_, because only Google sees the query. It also
+reports which pages are actually indexed and why the rest are not, accepts
+sitemap submissions, and can re-crawl a single URL on demand.
 
-## Phase 3 — App metadata, the half that doesn't name a URL
+**Why it is urgent rather than merely pending.** It reports from the day the
+property is created and backfills nothing. Phases 1, 3 and 4 have now all
+shipped, so the "after" is already accruing with no "before" to compare it
+against. The comparison degrades with every day; it does not disappear, and the
+tool is still worth having regardless — but the cheap version of this experiment
+is already partly spent.
 
-Requires cloning `DoughLoops2`, `ChordFinder2` and `SynthPutty` nearby.
+- [ ] **Google Search Console** — create the property at
+      <https://search.google.com/search-console>. Pick **Domain**, not URL
+      prefix: a domain property is verified once by DNS and covers the apex,
+      `www`, all three app subdomains, and both protocols. URL-prefix would mean
+      four properties and four verifications.
+- [ ] **Add the TXT record at Namecheap** — Advanced DNS, Host `@`, the
+      `google-site-verification=...` value. It sits _alongside_ the existing SPF
+      and GitHub challenge records; multiple TXT records at `@` coexist fine.
+      Host is `@`, not `evanczako.com` — Namecheap appends the domain itself.
+- [ ] **Submit all four sitemaps** — `evanczako.com`,
+      `doughloops.evanczako.com`, `chordfinder.evanczako.com` and
+      `synthputty.evanczako.com`. One property, four submissions; in the
+      Sitemaps field only the path (`sitemap.xml`) is typed.
+- [ ] **Request indexing** on the four home pages via URL Inspection. Optional,
+      but it turns "indexed in a week or two" into "a day or two".
+- [ ] **Bing Webmaster Tools** — <https://www.bing.com/webmasters>, then _Import
+      from Google Search Console_. Reuses the verification just done, so it
+      needs no second DNS record. Worth it because ChatGPT-style search surfaces
+      pull from Bing's index.
 
-Audited live rather than assumed — the three are in quite different states, and
-two of the three are Vite, not CRA:
+### Re-scrape the social cards
+
+Not Search Console, but the same "tell the crawlers" errand, and best done in
+the same sitting. Scrapers cache aggressively, and DoughLoops in particular had
+a **broken** preview cached for however long it was live — that stale entry will
+otherwise keep being served.
+
+- [ ] **Facebook Sharing Debugger** (<https://developers.facebook.com/tools/debug/>)
+      — "Scrape Again" for each of the four URLs.
+- [ ] **LinkedIn Post Inspector** (<https://www.linkedin.com/post-inspector/>) —
+      same four URLs. LinkedIn's cache is the stickiest of the lot.
+      Slack and iMessage re-fetch on their own within a day or so; nothing to do there.
+
+## Phase 3 — App metadata — DONE
+
+**Merged with phase 4's URL-dependent half and done in one pass per repo.** The
+split existed only because the domain was unsettled; once the move landed there
+was nothing to wait for, and two trips through three repos would have been pure
+overhead. So `og:url`, `canonical`, `sitemap.xml` and `robots.txt` were written
+alongside the titles and cards rather than after them.
+
+State before the work, audited live rather than assumed:
 
 | App         | Bundler | Title             | Description | og tags                           |
 | ----------- | ------- | ----------------- | ----------- | --------------------------------- |
@@ -117,30 +175,66 @@ two of the three are Vite, not CRA:
 | ChordFinder | Vite    | bare name         | none        | none                              |
 | SynthPutty  | CRA     | bare name         | present     | none                              |
 
-**DoughLoops has a live bug worth fixing first.** Its `og:image` is a relative
-path (`/DoughLoops2/assets/favicon-...png`), which no scraper can resolve — the
-tag is there but the preview is broken, and it points at a favicon rather than a
-1200x630 card. `twitter:card` is also `summary` rather than
-`summary_large_image`.
+Per app, all shipped and confirmed live:
 
-Per app:
+- [x] **DoughLoops** — absolute `og:image`, `twitter:card` to
+      `summary_large_image`, `og:url` corrected. Title and description were
+      already fine.
+- [x] **ChordFinder** — everything: `<title>`, description, og tags, card.
+- [x] **SynthPutty** — descriptive `<title>`, og tags, card. Description was
+      already fine.
+- [x] **`manifest.json`** — only SynthPutty has one, and it was still CRA's
+      stock `"React App"` / `"Create React App Sample"`, pointing at a
+      `favicon.ico` the repo does not contain. Rewritten; the dead icon entry
+      dropped. DoughLoops and ChordFinder ship no manifest at all, so there was
+      nothing to update there.
 
-- [ ] **DoughLoops** — absolute `og:image` pointing at a real 1200x630 card;
-      `twitter:card` to `summary_large_image`. Title and description already fine.
-- [ ] **ChordFinder** — everything: `<title>`, description, og tags, card.
-- [ ] **SynthPutty** — descriptive `<title>`, og tags, card. Description is fine.
-- [ ] All three: `manifest.json` name and description matching the new copy.
+### Two live bugs this fixed
 
-`tools/og-card.html` in this repo is a working template for the cards — swap the
-portrait block for the app's own mark.
+**DoughLoops' `og:image` was a relative path** (`/assets/favicon-...png`), which
+no scraper can resolve — the tag was present and the preview was broken, and it
+pointed at a favicon rather than a 1200x630 card. Its `og:url` also still named
+`evanczako.github.io/DoughLoops2/`, which after the move actively contradicted
+the 301 pointing the other way.
 
-Copy guidance: "ChordFinder" and "SynthPutty" are coined names nobody searches
-for. Write titles and descriptions around what people actually type — "online
-chord identifier", "browser synthesizer". DoughLoops already does this well
-("in-browser step sequencer") and is the model to copy.
+### The cards
 
-Deliberately **not** here — these name a URL, so they wait for phase 4:
-`og:url`, `canonical`, per-app `sitemap.xml`.
+Each app got the hub's `tools/` kit — `og-card.html`, `make-og.sh`, the inlined
+Space Grotesk — plus an `npm run og` script, so all four regenerate identically.
+
+Rather than a logo on a background, each card draws the app doing its job, using
+that app's own palette tokens so the card and the UI cannot drift apart:
+
+| App         | Motif                                                                        |
+| ----------- | ---------------------------------------------------------------------------- |
+| DoughLoops  | a real 16-step, 4-track pattern in `DrumGrid`'s cell/stripe/playhead colours |
+| ChordFinder | two octaves with a D7 pressed, in the app's `--key-*` tokens                 |
+| SynthPutty  | a harmonic series under a resonant lowpass, in the `--eq-*` colours          |
+
+Two things worth knowing before editing them:
+
+- **The DoughLoops and SynthPutty logos are matted on opaque black**, not
+  transparent, so on the `#0b0b10` page they read as hard-edged boxes. Both use
+  `mix-blend-mode: screen`, which maps pure black to the page colour exactly.
+  ChordFinder's badge has real transparency and needs no such trick.
+- **The SynthPutty trace is synthetic, not a capture** — harmonics spaced on a
+  log-frequency axis the way an analyser plots them. It is deliberately drawn
+  with no frequency numbers on the axis, since labelled ticks would imply a
+  precision the picture does not have.
+
+Copy guidance followed: "ChordFinder" and "SynthPutty" are coined names nobody
+searches for, so the titles lead with what people actually type — "online chord
+identifier", "polyphonic browser synthesizer". DoughLoops already did this
+("in-browser step sequencer") and was the model.
+
+### Footgun found in the deploy
+
+**DoughLoops is the only repo whose `deploy` script lives in `client/`, not the
+repo root** — its root `package.json` has no `deploy` at all. `npm run deploy`
+from `DoughLoops2/` fails with "Missing script: deploy" while the other two,
+which deploy from their roots, work fine. This silently cost one deploy cycle:
+the commit pushed, the publish never ran, and the site kept serving the old
+build with no error anywhere.
 
 ## Phase 4 — Consolidation, and the metadata that names a URL
 
@@ -191,16 +285,18 @@ names that do not all match their remotes:
 - [x] **Enforce HTTPS enabled** on all three repos (GitHub, repo Settings,
       Pages). Until this was on, the subdomains served plain HTTP with no
       upgrade and the 301s from the old URLs landed on `http://`.
-- [ ] **Verify the domain on GitHub.** The challenge TXT record is added and
-      resolving on public DNS; only the Verify button is left to click. Note it
-      lives in _account_ settings (<https://github.com/settings/pages>), not
-      repo settings, and verifying the apex `evanczako.com` covers the
-      subdomains. This is what stops someone else claiming an unused
-      `*.evanczako.com` on their own account.
-- [ ] Update the `PROJECTS[].link` values in `src/components/ProjectsGrid.tsx`,
-      then deploy the hub. The hub still points at the old URLs — they redirect,
-      so nothing is broken, but it is a wasted hop.
-- [ ] Update the links in this repo's `README.md`.
+- [x] **Verified the domain on GitHub.** Note it lives in _account_ settings
+      (<https://github.com/settings/pages>), not repo settings, and verifying
+      the apex `evanczako.com` covers the subdomains. This is what stops someone
+      else claiming an unused `*.evanczako.com` on their own account — if a repo
+      is ever deleted or renamed while its DNS record still points at GitHub,
+      that hostname would otherwise be claimable by any other account. Keep the
+      `_github-pages-challenge-evanczako` TXT record in place permanently;
+      removing it un-verifies the domain.
+- [x] Updated the `PROJECTS[].link` values in `src/components/ProjectsGrid.tsx`
+      and deployed the hub, so the three project links no longer take the
+      redirect hop.
+- [x] Updated the links in this repo's `README.md`.
 
 ### DoughLoops' backend — pre-emptive, not blocking
 
@@ -222,11 +318,25 @@ API is not called, and `client/.env.production` is inert.
 - [ ] Once the old URL is genuinely dead, drop `https://evanczako.github.io`
       from the list.
 
-### The URL-dependent metadata
+### The URL-dependent metadata — DONE, folded into phase 3
 
-- [ ] `og:url` and `canonical` in each app, naming the final hostname.
-- [ ] A `sitemap.xml` per app, plus a `Sitemap:` line in each `robots.txt`.
-- [ ] Re-verify in Search Console and submit the new sitemaps.
+- [x] `og:url` and `canonical` in each app, naming the final hostname.
+- [x] A `sitemap.xml` per app, plus a `Sitemap:` line in each `robots.txt`.
+      SynthPutty already had a stock CRA `robots.txt`; the other two had none.
+      Submitting these sitemaps is tracked in phase 2, not duplicated here — it is
+      blocked on the property existing at all. No re-verification is needed: a
+      DNS-verified domain property covers the subdomains from the start.
+
+Stale links cleaned up at the same time, since they were the same class of
+thing: `DoughLoops2/README.md`, `DoughLoops2/CONTEXT.md` and
+`dough-synths/CONTEXT.md` all still advertised `evanczako.github.io` URLs.
+
+`dough-synths/CONTEXT.md` also claimed the apps "share the
+`evanczako.github.io` origin, which is why the storage keys are namespaced".
+That stopped being true at the move — each app has its own origin now, and
+localStorage is keyed by origin rather than by registrable domain, so they do
+not share storage at all. The keys stay namespaced only so the four theme files
+remain copy-pasteable. Same correction `src/theme.ts` in this repo already got.
 
 ## Phase 5 — Analytics
 
@@ -239,8 +349,10 @@ before-and-after, so there is little cost to waiting.
       self-hosted Umami (~$9/mo hosted, nicer dashboards, still cookieless);
       GA4 (free and most powerful, but heavy, and needs consent handling in some
       jurisdictions).
-- [ ] **Add the snippet to all four `public/index.html` files**, so the hub to
-      app funnel shows up in one view.
+- [ ] **Add the snippet to all four index files**, so the hub-to-app funnel
+      shows up in one view. The path differs by bundler — CRA keeps it in
+      `public/index.html` (this repo, SynthPutty), Vite at the project root
+      (`DoughLoops2/client/index.html`, `chord-finder-2/index.html`).
 - [ ] **Instrument the outbound project links** in
       `src/components/ProjectsGrid.tsx`. They're `target="_blank"` with no
       tracking today, so there's no signal on which app people actually click.
