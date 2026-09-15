@@ -34,9 +34,34 @@ live rather than assumed:
 | `chordfinder.evanczako.com` | 200  | 200    | 200         | 200        |
 | `synthputty.evanczako.com`  | 200  | 200    | 200         | 200        |
 
-**What is left is phase 2 and phase 5** — Search Console and Bing, then
-analytics. Both are dashboard-and-DNS work rather than code; no repo currently
-needs a change for either.
+**Every phase is complete** as of 2026-09-14. Search Console and Bing are
+verified with all four sitemaps submitted, and Cloudflare Web Analytics is
+running on all four hosts with a token each.
+
+Three optional items remain open, none of them on any critical path: deploying
+DoughLoops' server to Render (only matters if the account feature is
+reconnected), dropping `evanczako.github.io` from that server's allowlist (wait
+until the old URLs are genuinely dead), and `react-snap` static rendering
+(largely unnecessary — Google renders JS, and the meta tags are hand-written).
+
+**What to watch, and when.** Cloudflare reports within minutes. Search Console
+coverage takes days and query data a week or two. At this scale the totals will
+be small and are not the point: the signal worth checking is whether "chord
+identifier" or "browser synthesizer" ever appears as a real query, which is the
+test of the phase 3 copy rewrite.
+
+### Operational notes worth keeping
+
+- **DoughLoops deploys from `client/`.** Its root `package.json` has no `deploy`
+  script, so `npm run deploy` from the repo root fails with "Missing script" —
+  the commit still pushes, nothing publishes, and the site keeps serving the old
+  build with no error anywhere. This cost two deploy cycles during this work.
+- **Four DNS records must stay.** The four GitHub Pages A records and three app
+  CNAMEs keep the sites up; the Google verification TXT at `@` and GitHub's
+  `_github-pages-challenge-evanczako` TXT keep the two verifications alive.
+  Removing either TXT silently un-verifies that service.
+- **Re-run `npm run og` after any palette change**, in all four repos. The cards
+  copy their seeds from `variables.module.css` and will otherwise drift.
 
 ---
 
@@ -138,11 +163,11 @@ is partial. Not fatal; the tool is worth having regardless.
 - [x] **All four sitemaps submitted** 2026-09-14, one URL discovered each
       (correct — every property is genuinely a single page).
 
-                For a Domain property there is no host dropdown on the Sitemaps page:
-                type the **full URL** (`https://doughloops.evanczako.com/sitemap.xml`),
-                not just the path. Entering a bare domain submits the HTML page as a
-                sitemap, which errors with "Sitemap is HTML" and discovers nothing; it is
-                harmless, and removed via the row's ⋮ menu.
+                  For a Domain property there is no host dropdown on the Sitemaps page:
+                  type the **full URL** (`https://doughloops.evanczako.com/sitemap.xml`),
+                  not just the path. Entering a bare domain submits the HTML page as a
+                  sitemap, which errors with "Sitemap is HTML" and discovers nothing; it is
+                  harmless, and removed via the row's ⋮ menu.
 
 - [x] **Request indexing** on the four home pages via URL Inspection. Optional,
       but it turns "indexed in a week or two" into "a day or two".
@@ -241,7 +266,7 @@ which deploy from their roots, work fine. This silently cost one deploy cycle:
 the commit pushed, the publish never ran, and the site kept serving the old
 build with no error anywhere.
 
-## Phase 4 — Consolidation, and the metadata that names a URL
+## Phase 4 — Consolidation, and the metadata that names a URL — DONE
 
 Skip the first half if phase 0 landed on "stay on github.io", but still do the
 second half against the github.io URLs.
@@ -366,8 +391,8 @@ search-side before-and-after, so there was little cost to waiting.
       Vite at the project root (`DoughLoops2/client/index.html`,
       `chord-finder-2/index.html`).
 
-          The tokens are committed in the clear deliberately: they ship in the page
-          source by design and are not secrets.
+            The tokens are committed in the clear deliberately: they ship in the page
+            source by design and are not secrets.
 
 ### Outbound link tracking — dropped, and why
 

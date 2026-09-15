@@ -4,9 +4,10 @@
   sections are anchors on it, not routes, and a sitemap lists documents.
 
   The three apps are deliberately absent. A sitemap may only list URLs on the
-  host that serves it, so evanczako.github.io/... entries here would simply be
-  ignored. They get their own sitemaps once they move onto subdomains; see
-  phase 4 in PLAN.md.
+  host that serves it, and each app now sits on its own subdomain with its own
+  sitemap. All four are submitted under the single DNS-verified evanczako.com
+  domain property in Search Console, which is what ties them together — not
+  cross-listing them here, which Google would ignore.
 -->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
