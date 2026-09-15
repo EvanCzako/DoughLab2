@@ -59,5 +59,23 @@
     <body>
         <noscript>You need to enable JavaScript to run this app.</noscript>
         <div id="root"></div>
+        <!--
+            Cloudflare Web Analytics for evanczako.com. Each of the four sites has its
+            own token, so each gets its own dashboard rather than all four
+            blurring into one number.
+
+            No cookies, no localStorage, no fingerprinting, so this needs no
+            consent banner. The token is not a secret -- it ships in the page
+            source by design.
+
+            There are no click events: Cloudflare Web Analytics has no track()
+            call. The hub-to-app funnel is read from the referrer on the app's
+            own dashboard instead. See phase 5 in the hub's PLAN.md.
+        -->
+        <script
+            type="module"
+            src="https://static.cloudflareinsights.com/beacon.min.js"
+            data-cf-beacon='{"token": "001390ddab584d04857eff66466494b5"}'
+        ></script>
     </body>
 </html>

@@ -107,41 +107,46 @@ GitHub Pages cannot send the `X-Robots-Tag` header that would otherwise be the
 cleaner tool. Restore from git history if it is wanted again — and add the
 `Disallow` line at the same time if it should stay out of results.
 
-## Phase 2 — Search dashboards — NOT STARTED, and now the critical path
+## Phase 2 — Search dashboards — DONE
 
-Everything else in this plan is done. This is the only remaining work that has a
-clock on it.
+Completed 2026-09-14. Verified, all four sitemaps submitted, indexing
+requested, Bing imported, and the social card caches re-scraped.
 
-**What Search Console actually is.** Google's dashboard for a site's owner, and
-the only source of one thing: **the queries people typed to reach you**.
-Analytics tools describe what happens _after_ someone arrives; Search Console
-describes what happened _before_, because only Google sees the query. It also
-reports which pages are actually indexed and why the rest are not, accepts
-sitemap submissions, and can re-crawl a single URL on demand.
+**What Search Console is, for whoever reads this next.** Google's dashboard for
+a site's owner, and the only source of one thing: **the queries people typed to
+reach you**. Analytics describes what happens _after_ someone arrives; Search
+Console describes what happened _before_, because only Google sees the query. It
+also reports which pages are actually indexed and why the rest are not, accepts
+sitemap submissions, and re-crawls a single URL on demand.
 
-**Why it is urgent rather than merely pending.** It reports from the day the
-property is created and backfills nothing. Phases 1, 3 and 4 have now all
-shipped, so the "after" is already accruing with no "before" to compare it
-against. The comparison degrades with every day; it does not disappear, and the
-tool is still worth having regardless — but the cheap version of this experiment
-is already partly spent.
+It reports from the day the property is created and backfills nothing, which is
+why it sat this early in the plan — the intent was a baseline from before the
+metadata work. In practice phases 1, 3 and 4 shipped first, so the before/after
+is partial. Not fatal; the tool is worth having regardless.
 
-- [ ] **Google Search Console** — create the property at
-      <https://search.google.com/search-console>. Pick **Domain**, not URL
-      prefix: a domain property is verified once by DNS and covers the apex,
-      `www`, all three app subdomains, and both protocols. URL-prefix would mean
-      four properties and four verifications.
-- [ ] **Add the TXT record at Namecheap** — Advanced DNS, Host `@`, the
-      `google-site-verification=...` value. It sits _alongside_ the existing SPF
-      and GitHub challenge records; multiple TXT records at `@` coexist fine.
-      Host is `@`, not `evanczako.com` — Namecheap appends the domain itself.
-- [ ] **Submit all four sitemaps** — `evanczako.com`,
-      `doughloops.evanczako.com`, `chordfinder.evanczako.com` and
-      `synthputty.evanczako.com`. One property, four submissions; in the
-      Sitemaps field only the path (`sitemap.xml`) is typed.
-- [ ] **Request indexing** on the four home pages via URL Inspection. Optional,
+- [x] **Google Search Console** — Domain property on `evanczako.com` created
+      and verified 2026-09-14. Domain rather than URL prefix: verified once by
+      DNS, covers the apex, `www`, all three app subdomains and both protocols,
+      where URL-prefix would have meant four properties and four verifications.
+- [x] **TXT record added at Namecheap** and confirmed resolving on both Google
+      and Cloudflare resolvers. Three TXT records now exist and all three must
+      stay: the Google verification record at `@`, the SPF record at `@`, and
+      GitHub's `_github-pages-challenge-evanczako`. Removing either
+      verification record un-verifies that service. Values are deliberately not
+      written down here — this repo is public, and both are readable from DNS
+      (`dig +short TXT evanczako.com`) whenever they are needed.
+- [x] **All four sitemaps submitted** 2026-09-14, one URL discovered each
+      (correct — every property is genuinely a single page).
+
+                For a Domain property there is no host dropdown on the Sitemaps page:
+                type the **full URL** (`https://doughloops.evanczako.com/sitemap.xml`),
+                not just the path. Entering a bare domain submits the HTML page as a
+                sitemap, which errors with "Sitemap is HTML" and discovers nothing; it is
+                harmless, and removed via the row's ⋮ menu.
+
+- [x] **Request indexing** on the four home pages via URL Inspection. Optional,
       but it turns "indexed in a week or two" into "a day or two".
-- [ ] **Bing Webmaster Tools** — <https://www.bing.com/webmasters>, then _Import
+- [x] **Bing Webmaster Tools** — <https://www.bing.com/webmasters>, then _Import
       from Google Search Console_. Reuses the verification just done, so it
       needs no second DNS record. Worth it because ChatGPT-style search surfaces
       pull from Bing's index.
@@ -153,9 +158,9 @@ the same sitting. Scrapers cache aggressively, and DoughLoops in particular had
 a **broken** preview cached for however long it was live — that stale entry will
 otherwise keep being served.
 
-- [ ] **Facebook Sharing Debugger** (<https://developers.facebook.com/tools/debug/>)
+- [x] **Facebook Sharing Debugger** (<https://developers.facebook.com/tools/debug/>)
       — "Scrape Again" for each of the four URLs.
-- [ ] **LinkedIn Post Inspector** (<https://www.linkedin.com/post-inspector/>) —
+- [x] **LinkedIn Post Inspector** (<https://www.linkedin.com/post-inspector/>) —
       same four URLs. LinkedIn's cache is the stickiest of the lot.
       Slack and iMessage re-fetch on their own within a day or so; nothing to do there.
 
@@ -338,25 +343,51 @@ localStorage is keyed by origin rather than by registrable domain, so they do
 not share storage at all. The keys stay namespaced only so the four theme files
 remain copy-pasteable. Same correction `src/theme.ts` in this repo already got.
 
-## Phase 5 — Analytics
+## Phase 5 — Analytics — DONE
 
-Last on purpose. Installing this before the domain settles splits the dataset at
-the moment it starts mattering; Search Console already covers the search-side
-before-and-after, so there is little cost to waiting.
+Last on purpose. Installing this before the domain settled would have split the
+dataset at the moment it started mattering; Search Console already covers the
+search-side before-and-after, so there was little cost to waiting.
 
-- [ ] **Pick a tool.** Recommendation: **Cloudflare Web Analytics** — free, one
-      script tag, no cookies, no consent banner. Alternatives: Plausible /
-      self-hosted Umami (~$9/mo hosted, nicer dashboards, still cookieless);
-      GA4 (free and most powerful, but heavy, and needs consent handling in some
-      jurisdictions).
-- [ ] **Add the snippet to all four index files**, so the hub-to-app funnel
-      shows up in one view. The path differs by bundler — CRA keeps it in
-      `public/index.html` (this repo, SynthPutty), Vite at the project root
-      (`DoughLoops2/client/index.html`, `chord-finder-2/index.html`).
-- [ ] **Instrument the outbound project links** in
-      `src/components/ProjectsGrid.tsx`. They're `target="_blank"` with no
-      tracking today, so there's no signal on which app people actually click.
-      This is the hub's main conversion event.
+- [x] **Tool picked: Cloudflare Web Analytics** — free, one script tag, no
+      cookies, so no consent banner. Alternatives considered and rejected:
+      Plausible / self-hosted Umami (nicer dashboards, ~$9/mo hosted, still
+      cookieless) and GA4 (most powerful, but a heavy script, cookie-based, and
+      needs consent handling in some jurisdictions — overkill for four pages).
+- [x] **Four site tokens obtained**, one per hostname, so each site has its
+      own dashboard rather than four hosts blurring into one number. The domain
+      stayed on Namecheap DNS: Web Analytics is standalone and needs only the
+      JS beacon. Moving nameservers would have meant rebuilding the whole zone
+      by hand — four A records, three CNAMEs, SPF, and both verification TXT
+      records — to avoid pasting a script tag.
+- [x] **Beacon added to all four index files** and verified in each build
+      output: one token per site, no duplicates across sites. The path differs
+      by bundler — CRA keeps it in `public/index.html` (this repo, SynthPutty),
+      Vite at the project root (`DoughLoops2/client/index.html`,
+      `chord-finder-2/index.html`).
+
+          The tokens are committed in the clear deliberately: they ship in the page
+          source by design and are not secrets.
+
+### Outbound link tracking — dropped, and why
+
+The original plan had a third item: instrument the `target="_blank"` project
+links in `src/components/ProjectsGrid.tsx` as the hub's main conversion event.
+
+**Cloudflare Web Analytics has no custom events.** It collects pageviews,
+referrers, paths, geo/browser/device breakdowns and Core Web Vitals; there is no
+`track()` call to hook a click to. The item is not deferred, it is impossible
+with this tool.
+
+It is also unnecessary. With the beacon on all four sites, a hub-to-app click
+lands as a pageview on the app **with `evanczako.com` as its referrer**, so the
+funnel is readable from the destination rather than from the click. That is the
+signal the item was after. The difference that remains: referrer attribution
+misses clicks that never complete, where a click event would have caught them.
+At this traffic level that is noise.
+
+If per-click attribution ever genuinely matters, it means changing tools —
+Plausible and Umami both have custom events — not adding code to this one.
 
 ## Optional — static rendering
 
