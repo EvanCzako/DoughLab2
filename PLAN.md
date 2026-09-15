@@ -163,11 +163,11 @@ is partial. Not fatal; the tool is worth having regardless.
 - [x] **All four sitemaps submitted** 2026-09-14, one URL discovered each
       (correct — every property is genuinely a single page).
 
-                  For a Domain property there is no host dropdown on the Sitemaps page:
-                  type the **full URL** (`https://doughloops.evanczako.com/sitemap.xml`),
-                  not just the path. Entering a bare domain submits the HTML page as a
-                  sitemap, which errors with "Sitemap is HTML" and discovers nothing; it is
-                  harmless, and removed via the row's ⋮ menu.
+                    For a Domain property there is no host dropdown on the Sitemaps page:
+                    type the **full URL** (`https://doughloops.evanczako.com/sitemap.xml`),
+                    not just the path. Entering a bare domain submits the HTML page as a
+                    sitemap, which errors with "Sitemap is HTML" and discovers nothing; it is
+                    harmless, and removed via the row's ⋮ menu.
 
 - [x] **Request indexing** on the four home pages via URL Inspection. Optional,
       but it turns "indexed in a week or two" into "a day or two".
@@ -280,17 +280,17 @@ fail HTTPS provisioning.
 Local checkouts live in `Portfolio apps/`, one level above this repo, under
 names that do not all match their remotes:
 
-| App         | Local dir        | Remote            | Stack | Published dir |
-| ----------- | ---------------- | ----------------- | ----- | ------------- |
-| DoughLoops  | `DoughLoops2`    | `DoughLoops2`     | Vite  | `client/dist` |
-| ChordFinder | `chord-finder-2` | `ChordFinder2`    | Vite  | `dist`        |
-| SynthPutty  | `dough-synths`   | `SynthPutty` [^1] | CRA   | `build`       |
+| App         | Local dir        | Remote         | Stack | Published dir |
+| ----------- | ---------------- | -------------- | ----- | ------------- |
+| DoughLoops  | `DoughLoops2`    | `DoughLoops2`  | Vite  | `client/dist` |
+| ChordFinder | `chord-finder-2` | `ChordFinder2` | Vite  | `dist`        |
+| SynthPutty  | `dough-synths`   | `SynthPutty`   | CRA   | `build`       |
 
-[^1]:
-    The clone's origin still says `dough-synths`, an older name GitHub
-    redirects for git operations. The repo's current name is `SynthPutty`, which is
-    why Pages serves `/SynthPutty/` and why `homepage` was already correct. Harmless;
-    update the remote URL if it ever gets confusing.
+SynthPutty's remote used to read `dough-synths`, an older repo name GitHub
+still redirects for git operations. It has been repointed at `SynthPutty`,
+the repo's actual name — which is also why Pages serves `/SynthPutty/` and why
+`homepage` was already correct. The **local directory** is still `dough-synths`;
+renaming it is cosmetic and was left alone deliberately.
 
 - [x] **Three CNAME records at Namecheap** — `doughloops`, `chordfinder`,
       `synthputty`, all pointing at `evanczako.github.io.` Verified resolving.
@@ -391,8 +391,8 @@ search-side before-and-after, so there was little cost to waiting.
       Vite at the project root (`DoughLoops2/client/index.html`,
       `chord-finder-2/index.html`).
 
-            The tokens are committed in the clear deliberately: they ship in the page
-            source by design and are not secrets.
+              The tokens are committed in the clear deliberately: they ship in the page
+              source by design and are not secrets.
 
 ### Outbound link tracking — dropped, and why
 
